@@ -133,6 +133,7 @@
         .carousel {
             display: flex;
             transition: transform 0.5s ease;
+            width: 100%;
         }
 
         .carousel img {
@@ -180,6 +181,13 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         /* Features */
@@ -205,6 +213,12 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .feature-icon {
@@ -238,6 +252,12 @@
         .social-links a {
             color: white;
             font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+            transform: scale(1.2);
         }
 
         .copyright {
@@ -397,38 +417,46 @@
         const carousel = document.getElementById('imageCarousel');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        const images = document.querySelectorAll('.carousel img');
-        
         let currentIndex = 0;
-        const imageWidth = 100; // 100% de la largeur du conteneur
+        const totalImages = document.querySelectorAll('.carousel img').length;
         
         function updateCarousel() {
-            carousel.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
         
         prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
             updateCarousel();
         });
         
         nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
             updateCarousel();
         });
 
-        // Téléchargement direct
-        document.getElementById('downloadBtn').addEventListener('click', function() {
-            // Créer un lien invisible pour le téléchargement
+        // Téléchargement direct garanti
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // URL GitHub officielle
+            const githubUrl = 'https://github.com/WorldSolutionRdc/WorldSolutionRdc.github.io/raw/main/Item_Rdc.apk';
+            
+            // URL de fallback
+            const mediafireUrl = 'https://www.mediafire.com/file/jr570qudq9qyhjy/Item+Rdc.apk/file';
+            
+            // Essai de téléchargement direct
             const link = document.createElement('a');
-            link.href = 'https://github.com/WorldSolutionRdc/WorldSolutionRdc.github.io/raw/main/Item_Rdc.apk'; // Lien vers votre APK sur GitHub
+            link.href = githubUrl;
             link.download = 'Item_Rdc.apk';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
             
-            // Alternative si le téléchargement direct ne fonctionne pas
+            // Vérification après 1 seconde
             setTimeout(() => {
-                window.location.href = 'https://www.mediafire.com/file/jr570qudq9qyhjy/Item+Rdc.apk/file';
+                if (!document.hasFocus()) { // Si le téléchargement n'a pas démarré
+                    window.open(mediafireUrl, '_blank');
+                }
             }, 1000);
         });
     </script>
