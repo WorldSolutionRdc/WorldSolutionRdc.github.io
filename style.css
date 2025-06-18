@@ -496,3 +496,39 @@ footer {
         font-size: 1.8rem;
     }
 }
+
+/* Gestion des utilisateurs */
+.user-item {
+    transition: all 0.3s;
+}
+
+.user-item:hover {
+    background-color: #f5f5f5;
+}
+
+.delete-user-btn {
+    transition: all 0.3s;
+}
+
+.delete-user-btn:hover {
+    transform: scale(1.1);
+    background-color: #c0392b !important;
+}
+
+#usersList {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) #f1f1f1;
+}
+
+#usersList::-webkit-scrollbar {
+    width: 6px;
+}
+
+#usersList::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#usersList::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 6px;
+}
