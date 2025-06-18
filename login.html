@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Item RDC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Picsart_25-06-18_07-01-11-265.jpg">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --error: #e74c3c;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: var(--error);
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(231, 76, 60, 0.1);
+            border-radius: 5px;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .login-container {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Picsart_25-06-18_07-01-11-265.jpg" alt="Logo Item RDC" class="logo">
+        <h1>Connexion à votre compte</h1>
+        
+        <div id="errorMessage" class="error-message"></div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" placeholder="Entrez votre nom d'utilisateur" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" placeholder="Entrez votre mot de passe" required>
+            </div>
+            
+            <button type="submit" class="btn">
+                <i class="fas fa-sign-in-alt"></i> Se connecter
+            </button>
+            
+            <div class="links">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+                <a href="#"><i class="fas fa-question-circle"></i> Aide</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Base de données utilisateur (en production, remplacer par une API)
+        const users = [
+            { 
+                username: "admin", 
+                password: "admin123", 
+                name: "Administrateur",
+                role: "admin",
+                lastLogin: null
+            },
+            { 
+                username: "user", 
+                password: "user123", 
+                name: "Utilisateur Standard",
+                role: "user",
+                lastLogin: null
+            }
+        ];
+
+        // Gestion du formulaire
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorElement = document.getElementById('errorMessage');
+            
+            // Réinitialiser les messages d'erreur
+            errorElement.style.display = 'none';
+            
+            // Trouver l'utilisateur
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                // Mettre à jour la dernière connexion
+                user.lastLogin = new Date().toISOString();
+                
+                // Stocker les informations de l'utilisateur
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                
+                // Ajouter à la liste des utilisateurs connectés
+                let connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
+                
+                // Vérifier si l'utilisateur est déjà dans la liste
+                const userIndex = connectedUsers.findIndex(u => u.username === user.username);
+                
+                if (userIndex === -1) {
+                    connectedUsers.push({
+                        username: user.username,
+                        name: user.name,
+                        loginTime: new Date().toLocaleString()
+                    });
+                } else {
+                    // Mettre à jour le temps de connexion
+                    connectedUsers[userIndex].loginTime = new Date().toLocaleString();
+                }
+                
+                localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
+                
+                // Rediriger vers le tableau de bord
+                window.location.href = 'dashboard.html';
+            } else {
+                // Afficher un message d'erreur
+                errorElement.textContent = 'Nom d\'utilisateur ou mot de passe incorrect.';
+                errorElement.style.display = 'block';
+                
+                // Animation d'erreur
+                errorElement.style.animation = 'none';
+                void errorElement.offsetWidth; // Trigger reflow
+                errorElement.style.animation = 'shake 0.5s';
+            }
+        });
+
+        // Vérifier si l'utilisateur est déjà connecté
+        if (localStorage.getItem('currentUser')) {
+            window.location.href = 'dashboard.html';
+        }
+
+        // Animation shake pour les erreurs
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
