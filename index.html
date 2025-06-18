@@ -14,6 +14,7 @@
         :root {
             --primary: #3498db;
             --secondary: #2ecc71;
+            --error: #e74c3c;
             --dark: #2c3e50;
             --light: #f8f9fa;
             --shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -49,6 +50,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: var(--shadow);
+            cursor: pointer;
         }
 
         .menu {
@@ -93,6 +95,9 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo-container {
@@ -106,6 +111,137 @@
             height: 50px;
             border-radius: 10px;
             object-fit: cover;
+        }
+
+        .desktop-nav {
+            display: none;
+        }
+
+        .desktop-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .desktop-nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .desktop-nav a:hover {
+            color: var(--primary);
+        }
+
+        .login-btn {
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Modal d'authentification */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .auth-tab.active {
+            border-bottom: 3px solid var(--primary);
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .inputBox {
+            margin-bottom: 15px;
+        }
+
+        .inputBox input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .inputBox input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .auth-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .auth-btn:hover {
+            background: var(--secondary);
+        }
+
+        .error-message {
+            color: var(--error);
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(231, 76, 60, 0.1);
+            border-radius: 5px;
+            display: none;
         }
 
         /* Section Hero */
@@ -265,6 +401,95 @@
             opacity: 0.8;
         }
 
+        /* Animation shake */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        /* Modale Gestion Utilisateurs */
+        .user-management-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .user-management-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .user-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #e1e1e1;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin-right: 5px;
+            color: #555;
+        }
+
+        .delete-user-btn {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+
+        .delete-user-btn:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 10px;
+        }
+
         /* Responsive */
         @media (min-width: 768px) {
             .features-grid {
@@ -278,6 +503,71 @@
             .carousel-container {
                 max-width: 400px;
             }
+
+            .menu-btn {
+                display: none;
+            }
+
+            .desktop-nav {
+                display: block;
+            }
+        }
+
+        /* Style pour les captures d'écran dans un téléphone */
+        .phone-mockup {
+            position: relative;
+            width: 300px;
+            height: 600px;
+            margin: 0 auto;
+            border: 12px solid #111;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: #111;
+            z-index: 10;
+            border-radius: 28px 28px 0 0;
+        }
+
+        .phone-mockup::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: #111;
+            z-index: 10;
+            border-radius: 0 0 28px 28px;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .phone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 480px) {
+            .phone-mockup {
+                width: 250px;
+                height: 500px;
+                border-width: 10px;
+                border-radius: 30px;
+            }
         }
     </style>
 </head>
@@ -289,11 +579,85 @@
     
     <div class="menu" id="mobileMenu">
         <ul>
+            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a></li>
             <li><a href="#about"><i class="fas fa-info-circle"></i> À propos</a></li>
             <li><a href="#services"><i class="fas fa-cogs"></i> Nos Services</a></li>
-            <li><a href="https://wa.me/+243972256470"><i class="fas fa-headset"></i> Contacter le développeur</a></li>
-            <li><a href="#partners"><i class="fas fa-handshake"></i> Nos partenaires</a></li>
+            <li><a href="#partners"><i class="fas fa-handshake"></i> Partenaires</a></li>
+            
+            <!-- Option Admin seulement -->
+            <li id="adminManagementItem" style="display: none;">
+                <a href="#" id="userManagementBtn"><i class="fas fa-users-cog"></i> Gestion Utilisateurs</a>
+            </li>
+            
+            <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
         </ul>
+    </div>
+
+    <!-- Modal d'authentification -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Connexion</div>
+                <div class="auth-tab" data-tab="register">Inscription</div>
+            </div>
+            
+            <div id="authError" class="error-message"></div>
+            
+            <!-- Formulaire de connexion -->
+            <form id="loginForm" class="auth-form active">
+                <div class="inputBox">
+                    <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" required>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="loginPassword" placeholder="Mot de passe" required>
+                </div>
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-sign-in-alt"></i> Se connecter
+                </button>
+            </form>
+            
+            <!-- Formulaire d'inscription -->
+            <form id="registerForm" class="auth-form">
+                <div class="inputBox">
+                    <input type="text" id="registerName" placeholder="Nom complet" required>
+                </div>
+                <div class="inputBox">
+                    <input type="text" id="registerUsername" placeholder="Nom d'utilisateur" required>
+                </div>
+                <div class="inputBox">
+                    <input type="email" id="registerEmail" placeholder="Email" required>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="registerPassword" placeholder="Mot de passe" required>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="registerConfirmPassword" placeholder="Confirmer mot de passe" required>
+                </div>
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-user-plus"></i> S'inscrire
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modale de gestion utilisateur -->
+    <div id="userManagementModal" class="user-management-modal">
+        <div class="user-management-container">
+            <h2><i class="fas fa-users-cog"></i> Gestion des Utilisateurs</h2>
+            
+            <div class="inputBox" style="display: flex; gap: 10px; margin: 20px 0;">
+                <input type="text" id="searchUser" placeholder="Rechercher par nom, email ou username" style="flex: 1;">
+                <button id="searchBtn" class="auth-btn" style="width: auto; padding: 0 15px;">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div id="usersList"></div>
+            
+            <button id="closeUserManagement" class="auth-btn" style="margin-top: 20px; background: var(--dark);">
+                <i class="fas fa-times"></i> Fermer
+            </button>
+        </div>
     </div>
 
     <header>
@@ -303,20 +667,35 @@
             </div>
             <h1>Item RDC</h1>
         </div>
+        
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#partners">Partenaires</a></li>
+                <li><a href="https://wa.me/+243972256470">Contact</a></li>
+                <li><a href="#" id="authToggle" class="login-btn">Connexion</a></li>
+            </ul>
+        </nav>
     </header>
 
     <section class="hero">
         <h1>Votre allié pour réussir tests et entretiens</h1>
         <p>Développez vos connaissances et maximisez vos chances de succès</p>
         
-        <div class="carousel-container">
-            <div class="carousel" id="imageCarousel">
-                <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_065256.jpg" alt="Capture 1">
-                <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074710.jpg" alt="Capture 2">
-                <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074733.jpg" alt="Capture 3">
+        <!-- Mockup téléphone avec captures d'écran -->
+        <div class="phone-mockup">
+            <div class="phone-screen">
+                <div class="carousel-container" style="border-radius: 0; border: none; max-width: 100%; height: 100%;">
+                    <div class="carousel" id="imageCarousel" style="height: 100%;">
+                        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_065256.jpg" alt="Capture 1">
+                        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074710.jpg" alt="Capture 2">
+                        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074733.jpg" alt="Capture 3">
+                    </div>
+                    <button class="carousel-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
             </div>
-            <button class="carousel-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-            <button class="carousel-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
         </div>
         
         <button class="download-btn" id="downloadBtn">
@@ -405,12 +784,44 @@
     </footer>
 
     <script>
+        // Initialisation des données
+        function initializeData() {
+            if (!localStorage.getItem('users')) {
+                const adminAccount = {
+                    name: "Administrateur",
+                    username: "admin",
+                    email: "admin@itemrdc.com",
+                    password: "admin123",
+                    role: "admin",
+                    joinDate: new Date().toISOString(),
+                    downloads: 0
+                };
+                localStorage.setItem('users', JSON.stringify([adminAccount]));
+            }
+            
+            if (!localStorage.getItem('downloads')) {
+                localStorage.setItem('downloads', JSON.stringify([]));
+            }
+            
+            if (!localStorage.getItem('connectedUsers')) {
+                localStorage.setItem('connectedUsers', JSON.stringify([]));
+            }
+        }
+        initializeData();
+
         // Menu mobile
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
+        });
+
+        // Fermer le menu lorsqu'un élément est sélectionné
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
         });
 
         // Carrousel amélioré
@@ -434,9 +845,171 @@
             updateCarousel();
         });
 
-        // Téléchargement direct garanti
+        // Gestion de l'authentification
+        const authModal = document.getElementById('authModal');
+        const authTabs = document.querySelectorAll('.auth-tab');
+        const authForms = document.querySelectorAll('.auth-form');
+        const authToggle = document.getElementById('authToggle');
+        const authError = document.getElementById('authError');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const userManagementModal = document.getElementById('userManagementModal');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Afficher la modal si non connecté
+        if (!localStorage.getItem('currentUser')) {
+            authModal.style.display = 'flex';
+        }
+
+        // Gestion des onglets
+        authTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                authTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const tabName = tab.dataset.tab;
+                authForms.forEach(form => {
+                    form.classList.remove('active');
+                    if (form.id === `${tabName}Form`) {
+                        form.classList.add('active');
+                    }
+                });
+                authError.style.display = 'none';
+            });
+        });
+
+        // Ouvrir/fermer la modal
+        authToggle?.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (localStorage.getItem('currentUser')) {
+                window.location.href = 'dashboard.html';
+            } else {
+                authModal.style.display = 'flex';
+            }
+        });
+
+        authModal.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                authModal.style.display = 'none';
+            }
+        });
+
+        // Connexion
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            authError.style.display = 'none';
+            
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                // Mettre à jour les utilisateurs connectés
+                const connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
+                if (!connectedUsers.some(u => u.username === user.username)) {
+                    connectedUsers.push({
+                        username: user.username,
+                        name: user.name,
+                        loginTime: new Date().toISOString()
+                    });
+                    localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
+                }
+                
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                updateAuthState();
+                authModal.style.display = 'none';
+                window.location.reload();
+            } else {
+                showAuthError('Identifiants incorrects');
+            }
+        });
+
+        // Inscription
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            authError.style.display = 'none';
+            
+            const name = document.getElementById('registerName').value;
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                showAuthError('Les mots de passe ne correspondent pas');
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            if (users.some(u => u.username === username)) {
+                showAuthError('Ce nom d\'utilisateur est déjà pris');
+                return;
+            }
+            
+            if (users.some(u => u.email === email)) {
+                showAuthError('Cet email est déjà utilisé');
+                return;
+            }
+            
+            const newUser = {
+                name,
+                username,
+                email,
+                password,
+                role: 'user',
+                joinDate: new Date().toISOString(),
+                downloads: 0
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+            
+            // Ajouter aux utilisateurs connectés
+            const connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
+            connectedUsers.push({
+                username: newUser.username,
+                name: newUser.name,
+                loginTime: new Date().toISOString()
+            });
+            localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
+            
+            updateAuthState();
+            authModal.style.display = 'none';
+            window.location.href = 'dashboard.html';
+        });
+
+        // Déconnexion
+        // Correction de la fonction de déconnexion
+document.getElementById('logoutBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // 1. Supprimer l'utilisateur courant
+    localStorage.removeItem('currentUser');
+    
+    // 2. Fermer le menu mobile si ouvert
+    document.getElementById('mobileMenu').classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    // 3. Forcer le rechargement de la page
+    window.location.href = 'index.html';
+    
+    // 4. Afficher la modale de connexion après le rechargement
+    setTimeout(() => {
+        document.getElementById('authModal').style.display = 'flex';
+    }, 100);
+});
+
+        // Téléchargement
         document.getElementById('downloadBtn').addEventListener('click', function(e) {
             e.preventDefault();
+            
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const users = JSON.parse(localStorage.getItem('users'));
+            const downloads = JSON.parse(localStorage.getItem('downloads'));
             
             // URL GitHub officielle
             const githubUrl = 'https://github.com/WorldSolutionRdc/WorldSolutionRdc.github.io/raw/main/Item_Rdc.apk';
@@ -452,13 +1025,190 @@
             link.click();
             document.body.removeChild(link);
             
+            // Enregistrer le téléchargement
+            if (user) {
+                // Mettre à jour le compteur pour l'utilisateur
+                const userIndex = users.findIndex(u => u.username === user.username);
+                if (userIndex !== -1) {
+                    users[userIndex].downloads = (users[userIndex].downloads || 0) + 1;
+                    localStorage.setItem('users', JSON.stringify(users));
+                }
+                
+                // Ajouter aux téléchargements globaux
+                downloads.push({
+                    username: user.username,
+                    email: user.email,
+                    date: new Date().toISOString()
+                });
+                localStorage.setItem('downloads', JSON.stringify(downloads));
+            }
+            
             // Vérification après 1 seconde
             setTimeout(() => {
-                if (!document.hasFocus()) { // Si le téléchargement n'a pas démarré
+                if (!document.hasFocus()) {
                     window.open(mediafireUrl, '_blank');
                 }
             }, 1000);
         });
+
+        // Gestion des utilisateurs (Admin)
+        function loadUserManagement() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Recherche dynamique
+            document.getElementById('searchUser').addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                const filtered = users.filter(u => 
+                    u.name.toLowerCase().includes(term) || 
+                    u.email.toLowerCase().includes(term) || 
+                    u.username.toLowerCase().includes(term)
+                );
+                displayUsers(filtered);
+            });
+
+            displayUsers(users);
+        }
+
+        function displayUsers(users) {
+            const usersList = document.getElementById('usersList');
+            usersList.innerHTML = '';
+
+            if (users.length === 0) {
+                usersList.innerHTML = '<p style="text-align: center; padding: 20px;">Aucun utilisateur trouvé</p>';
+                return;
+            }
+
+            users.forEach(user => {
+                const userDiv = document.createElement('div');
+                userDiv.className = 'user-item';
+                
+                userDiv.innerHTML = `
+                    <div style="flex: 1;">
+                        <div style="font-weight: bold;">${user.name}</div>
+                        <div style="font-size: 0.9em; color: #666;">
+                            ${user.email} • ${user.username}
+                            ${user.role === 'admin' ? '<span style="color: var(--primary); font-weight: bold;"> (Admin)</span>' : ''}
+                        </div>
+                        <div style="font-size: 0.8em; margin-top: 5px;">
+                            <span class="badge">Inscrit le: ${new Date(user.joinDate).toLocaleDateString()}</span>
+                            <span class="badge">Téléchargements: ${user.downloads || 0}</span>
+                        </div>
+                    </div>
+                    
+                    ${user.role !== 'admin' ? `
+                    <button class="delete-user-btn" data-username="${user.username}">
+                        <i class="fas fa-trash"></i> Supprimer
+                    </button>` : ''}
+                `;
+
+                usersList.appendChild(userDiv);
+            });
+
+            // Gestion des boutons de suppression
+            document.querySelectorAll('.delete-user-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const username = e.currentTarget.dataset.username;
+                    const users = JSON.parse(localStorage.getItem('users'));
+                    const user = users.find(u => u.username === username);
+                    
+                    if (confirm(`Voulez-vous vraiment supprimer ${user.name} (${user.email}) ?\nCette action est irréversible.`)) {
+                        deleteUser(username);
+                    }
+                });
+            });
+        }
+
+        function deleteUser(username) {
+            let users = JSON.parse(localStorage.getItem('users'));
+            let connectedUsers = JSON.parse(localStorage.getItem('connectedUsers'));
+            let downloads = JSON.parse(localStorage.getItem('downloads'));
+            
+            // Filtrer les utilisateurs
+            users = users.filter(u => u.username !== username);
+            
+            // Retirer des utilisateurs connectés
+            connectedUsers = connectedUsers.filter(u => u.username !== username);
+            
+            // Filtrer les téléchargements
+            downloads = downloads.filter(d => d.username !== username);
+            
+            // Sauvegarder
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
+            localStorage.setItem('downloads', JSON.stringify(downloads));
+            
+            // Recharger l'affichage
+            displayUsers(users);
+        }
+
+        // Mettre à jour l'état d'authentification
+        function updateAuthState() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
+            
+            if (user) {
+                // Afficher option admin si nécessaire
+                if (user.role === 'admin') {
+                    document.getElementById('adminManagementItem').style.display = 'block';
+                    
+                    // Gestion de la modale admin
+                    document.getElementById('userManagementBtn').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        document.getElementById('userManagementModal').style.display = 'flex';
+                        loadUserManagement();
+                    });
+                } else {
+                    document.getElementById('adminManagementItem').style.display = 'none';
+                }
+
+                // Menu desktop
+                if (authToggle) {
+                    authToggle.innerHTML = '<i class="fas fa-user"></i> Mon compte';
+                    authToggle.href = 'dashboard.html';
+                    authToggle.classList.remove('login-btn');
+                }
+            } else {
+                // Menu mobile
+                document.getElementById('adminManagementItem').style.display = 'none';
+                
+                // Menu desktop
+                if (authToggle) {
+                    authToggle.innerHTML = 'Connexion';
+                    authToggle.href = '#';
+                    authToggle.classList.add('login-btn');
+                }
+            }
+        }
+
+        // Fermer la modale de gestion utilisateur
+        document.getElementById('closeUserManagement').addEventListener('click', () => {
+            document.getElementById('userManagementModal').style.display = 'none';
+        });
+
+        // Fermer la modale en cliquant à l'extérieur
+        userManagementModal.addEventListener('click', (e) => {
+            if (e.target === userManagementModal) {
+                userManagementModal.style.display = 'none';
+            }
+        });
+
+        // Afficher les erreurs
+        function showAuthError(message) {
+            authError.textContent = message;
+            authError.style.display = 'block';
+            authError.style.animation = 'none';
+            void authError.offsetWidth;
+            authError.style.animation = 'shake 0.5s';
+        }
+
+        // Initialisation
+        updateAuthState();
+
+        // Si admin est connecté, charger la gestion des utilisateurs
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser && currentUser.role === 'admin') {
+            loadUserManagement();
+        }
     </script>
 </body>
 </html>
