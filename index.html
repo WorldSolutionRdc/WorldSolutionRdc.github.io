@@ -475,6 +475,24 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
+        /* Indicateur de statut */
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .status-online {
+            background-color: #2ecc71;
+            box-shadow: 0 0 5px #2ecc71;
+        }
+
+        .status-offline {
+            background-color: #e74c3c;
+        }
+
         /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -794,7 +812,9 @@
                     password: "admin123",
                     role: "admin",
                     joinDate: new Date().toISOString(),
-                    downloads: 0
+                    downloads: 0,
+                    lastLogin: null,
+                    isOnline: false
                 };
                 localStorage.setItem('users', JSON.stringify([adminAccount]));
             }
@@ -906,15 +926,29 @@
             const user = users.find(u => u.username === username && u.password === password);
             
             if (user) {
+                // Mettre à jour le statut de l'utilisateur
+                user.lastLogin = new Date().toISOString();
+                user.isOnline = true;
+                localStorage.setItem('users', JSON.stringify(users));
+                
                 // Mettre à jour les utilisateurs connectés
                 const connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
                 if (!connectedUsers.some(u => u.username === user.username)) {
                     connectedUsers.push({
                         username: user.username,
                         name: user.name,
-                        loginTime: new Date().toISOString()
+                        loginTime: new Date().toISOString(),
+                        isOnline: true
                     });
                     localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
+                } else {
+                    // Mettre à jour l'heure de connexion si l'utilisateur existe déjà
+                    const existingUser = connectedUsers.find(u => u.username === user.username);
+                    if (existingUser) {
+                        existingUser.loginTime = new Date().toISOString();
+                        existingUser.isOnline = true;
+                        localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
+                    }
                 }
                 
                 localStorage.setItem('currentUser', JSON.stringify(user));
@@ -961,7 +995,9 @@
                 password,
                 role: 'user',
                 joinDate: new Date().toISOString(),
-                downloads: 0
+                downloads: 0,
+                lastLogin: new Date().toISOString(),
+                isOnline: true
             };
             
             users.push(newUser);
@@ -973,7 +1009,8 @@
             connectedUsers.push({
                 username: newUser.username,
                 name: newUser.name,
-                loginTime: new Date().toISOString()
+                loginTime: new Date().toISOString(),
+                isOnline: true
             });
             localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
             
@@ -983,25 +1020,43 @@
         });
 
         // Déconnexion
-        // Correction de la fonction de déconnexion
-document.getElementById('logoutBtn').addEventListener('click', function(e) {
-    e.preventDefault();
-    
-    // 1. Supprimer l'utilisateur courant
-    localStorage.removeItem('currentUser');
-    
-    // 2. Fermer le menu mobile si ouvert
-    document.getElementById('mobileMenu').classList.remove('active');
-    document.body.style.overflow = 'auto';
-    
-    // 3. Forcer le rechargement de la page
-    window.location.href = 'index.html';
-    
-    // 4. Afficher la modale de connexion après le rechargement
-    setTimeout(() => {
-        document.getElementById('authModal').style.display = 'flex';
-    }, 100);
-});
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Mettre à jour le statut de l'utilisateur
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser) {
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const user = users.find(u => u.username === currentUser.username);
+                if (user) {
+                    user.isOnline = false;
+                    localStorage.setItem('users', JSON.stringify(users));
+                }
+                
+                // Mettre à jour les utilisateurs connectés
+                const connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
+                const connectedUser = connectedUsers.find(u => u.username === currentUser.username);
+                if (connectedUser) {
+                    connectedUser.isOnline = false;
+                    localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
+                }
+            }
+            
+            // 1. Supprimer l'utilisateur courant
+            localStorage.removeItem('currentUser');
+            
+            // 2. Fermer le menu mobile si ouvert
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // 3. Forcer le rechargement de la page
+            window.location.href = 'index.html';
+            
+            // 4. Afficher la modale de connexion après le rechargement
+            setTimeout(() => {
+                document.getElementById('authModal').style.display = 'flex';
+            }, 100);
+        });
 
         // Téléchargement
         document.getElementById('downloadBtn').addEventListener('click', function(e) {
@@ -1054,6 +1109,13 @@ document.getElementById('logoutBtn').addEventListener('click', function(e) {
         // Gestion des utilisateurs (Admin)
         function loadUserManagement() {
             const users = JSON.parse(localStorage.getItem('users')) || [];
+            const connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
+            
+            // Mettre à jour le statut isOnline pour tous les utilisateurs
+            users.forEach(user => {
+                const connectedUser = connectedUsers.find(u => u.username === user.username);
+                user.isOnline = connectedUser ? connectedUser.isOnline : false;
+            });
             
             // Recherche dynamique
             document.getElementById('searchUser').addEventListener('input', (e) => {
@@ -1063,13 +1125,13 @@ document.getElementById('logoutBtn').addEventListener('click', function(e) {
                     u.email.toLowerCase().includes(term) || 
                     u.username.toLowerCase().includes(term)
                 );
-                displayUsers(filtered);
+                displayUsers(filtered, connectedUsers);
             });
 
-            displayUsers(users);
+            displayUsers(users, connectedUsers);
         }
 
-        function displayUsers(users) {
+        function displayUsers(users, connectedUsers) {
             const usersList = document.getElementById('usersList');
             usersList.innerHTML = '';
 
@@ -1082,16 +1144,26 @@ document.getElementById('logoutBtn').addEventListener('click', function(e) {
                 const userDiv = document.createElement('div');
                 userDiv.className = 'user-item';
                 
+                // Trouver l'utilisateur connecté correspondant
+                const connectedUser = connectedUsers.find(u => u.username === user.username);
+                const lastLoginTime = connectedUser ? connectedUser.loginTime : user.lastLogin;
+                const isOnline = connectedUser ? connectedUser.isOnline : false;
+                
                 userDiv.innerHTML = `
                     <div style="flex: 1;">
-                        <div style="font-weight: bold;">${user.name}</div>
+                        <div style="font-weight: bold;">
+                            <span class="status-indicator ${isOnline ? 'status-online' : 'status-offline'}"></span>
+                            ${user.name}
+                        </div>
                         <div style="font-size: 0.9em; color: #666;">
                             ${user.email} • ${user.username}
                             ${user.role === 'admin' ? '<span style="color: var(--primary); font-weight: bold;"> (Admin)</span>' : ''}
                         </div>
                         <div style="font-size: 0.8em; margin-top: 5px;">
                             <span class="badge">Inscrit le: ${new Date(user.joinDate).toLocaleDateString()}</span>
+                            <span class="badge">Dernière connexion: ${lastLoginTime ? new Date(lastLoginTime).toLocaleString() : 'Jamais'}</span>
                             <span class="badge">Téléchargements: ${user.downloads || 0}</span>
+                            <span class="badge">Statut: ${isOnline ? '<span style="color: var(--secondary);">En ligne</span>' : '<span style="color: var(--error);">Hors ligne</span>'}</span>
                         </div>
                     </div>
                     
@@ -1138,7 +1210,7 @@ document.getElementById('logoutBtn').addEventListener('click', function(e) {
             localStorage.setItem('downloads', JSON.stringify(downloads));
             
             // Recharger l'affichage
-            displayUsers(users);
+            loadUserManagement();
         }
 
         // Mettre à jour l'état d'authentification
