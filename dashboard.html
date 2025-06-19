@@ -134,7 +134,7 @@
             color: var(--primary);
         }
 
-        .login-btn {
+        .download-btn-nav {
             background: var(--primary);
             color: white;
             padding: 8px 20px;
@@ -144,104 +144,10 @@
             transition: all 0.3s;
         }
 
-        .login-btn:hover {
+        .download-btn-nav:hover {
             background: var(--secondary);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        /* Modal d'authentification */
-        .auth-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .auth-container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .auth-tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .auth-tab {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .auth-tab.active {
-            border-bottom: 3px solid var(--primary);
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .auth-form {
-            display: none;
-        }
-
-        .auth-form.active {
-            display: block;
-        }
-
-        .inputBox {
-            margin-bottom: 15px;
-        }
-
-        .inputBox input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .inputBox input:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-
-        .auth-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 5px;
-            width: 100%;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .auth-btn:hover {
-            background: var(--secondary);
-        }
-
-        .error-message {
-            color: var(--error);
-            margin-bottom: 15px;
-            padding: 10px;
-            background: rgba(231, 76, 60, 0.1);
-            border-radius: 5px;
-            display: none;
         }
 
         /* Section Hero */
@@ -408,91 +314,6 @@
             20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
 
-        /* Modale Gestion Utilisateurs */
-        .user-management-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .user-management-container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .user-item {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            transition: all 0.2s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .user-item:hover {
-            background-color: #f9f9f9;
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: #e1e1e1;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.75em;
-            margin-right: 5px;
-            color: #555;
-        }
-
-        .delete-user-btn {
-            background: var(--error);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s;
-        }
-
-        .delete-user-btn:hover {
-            opacity: 1;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        /* Indicateur de statut */
-        .status-indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
-
-        .status-online {
-            background-color: #2ecc71;
-            box-shadow: 0 0 5px #2ecc71;
-        }
-
-        .status-offline {
-            background-color: #e74c3c;
-        }
-
         /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -506,29 +327,6 @@
         ::-webkit-scrollbar-thumb {
             background-color: var(--primary);
             border-radius: 10px;
-        }
-
-        /* Responsive */
-        @media (min-width: 768px) {
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .carousel-container {
-                max-width: 400px;
-            }
-
-            .menu-btn {
-                display: none;
-            }
-
-            .desktop-nav {
-                display: block;
-            }
         }
 
         /* Style pour les captures d'écran dans un téléphone */
@@ -587,10 +385,30 @@
                 border-radius: 30px;
             }
         }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .carousel-container {
+                max-width: 400px;
+            }
+
+            .menu-btn {
+                display: none;
+            }
+
+            .desktop-nav {
+                display: block;
+            }
+        }
     </style>
-    <!-- Import Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <!-- Menu Mobile -->
@@ -600,576 +418,175 @@
     
     <div class="menu" id="mobileMenu">
         <ul>
-            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a></li>
             <li><a href="#about"><i class="fas fa-info-circle"></i> À propos</a></li>
             <li><a href="#services"><i class="fas fa-cogs"></i> Nos Services</a></li>
             <li><a href="#partners"><i class="fas fa-handshake"></i> Partenaires</a></li>
-            
-            <!-- Option Admin seulement -->
-            <li id="adminManagementItem" style="display: none;">
-                <a href="#" id="userManagementBtn"><i class="fas fa-users-cog"></i> Gestion Utilisateurs</a>
-            </li>
-            
-            <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+            <li><a href="#" id="downloadBtnMobile"><i class="fas fa-download"></i> Télécharger</a></li>
         </ul>
     </div>
 
-    <!-- Modal d'authentification -->
-    <div id="authModal" class="auth-modal">
-        <div class="auth-container">
-            <div class="auth-tabs">
-                <div class="auth-tab active" data-tab="login">Connexion</div>
-                <div class="auth-tab" data-tab="register">Inscription</div>
+    <header>
+        <div class="logo-container">
+            <div class="app-logo">
+                <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Picsart_25-06-18_07-01-11-265.jpg" alt="Logo Item RDC">
             </div>
-            
-            <div id="authError" class="error-message"></div>
-            
-            <!-- Formulaire de connexion -->
-            <form id="loginForm" class="auth-form active">
-                <div class="inputBox">
-                    <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" required>
-                </div>
-                <div class="inputBox">
-                                    <input type="password" id="loginPassword" placeholder="Mot de passe" required>
-            </div>
-            <button type="submit" class="auth-btn">
-                <i class="fas fa-sign-in-alt"></i> Se connecter
-            </button>
-        </form>
-        
-        <!-- Formulaire d'inscription -->
-        <form id="registerForm" class="auth-form">
-            <div class="inputBox">
-                <input type="text" id="registerName" placeholder="Nom complet" required>
-            </div>
-            <div class="inputBox">
-                <input type="text" id="registerUsername" placeholder="Nom d'utilisateur" required>
-            </div>
-            <div class="inputBox">
-                <input type="email" id="registerEmail" placeholder="Email" required>
-            </div>
-            <div class="inputBox">
-                <input type="password" id="registerPassword" placeholder="Mot de passe" required>
-            </div>
-            <div class="inputBox">
-                <input type="password" id="registerConfirmPassword" placeholder="Confirmer mot de passe" required>
-            </div>
-            <button type="submit" class="auth-btn">
-                <i class="fas fa-user-plus"></i> S'inscrire
-            </button>
-        </form>
-    </div>
-</div>
-
-<!-- Modale de gestion utilisateur -->
-<div id="userManagementModal" class="user-management-modal">
-    <div class="user-management-container">
-        <h2><i class="fas fa-users-cog"></i> Gestion des Utilisateurs</h2>
-        
-        <div class="inputBox" style="display: flex; gap: 10px; margin: 20px 0;">
-            <input type="text" id="searchUser" placeholder="Rechercher par nom, email ou username" style="flex: 1;">
-            <button id="searchBtn" class="auth-btn" style="width: auto; padding: 0 15px;">
-                <i class="fas fa-search"></i>
-            </button>
+            <h1>Item RDC</h1>
         </div>
         
-        <div id="usersList"></div>
-        
-        <button id="closeUserManagement" class="auth-btn" style="margin-top: 20px; background: var(--dark);">
-            <i class="fas fa-times"></i> Fermer
-        </button>
-    </div>
-</div>
-
-<header>
-    <div class="logo-container">
-        <div class="app-logo">
-            <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Picsart_25-06-18_07-01-11-265.jpg" alt="Logo Item RDC">
-        </div>
-        <h1>Item RDC</h1>
-    </div>
-    
-    <nav class="desktop-nav">
-        <ul>
-            <li><a href="#about">À propos</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#partners">Partenaires</a></li>
-            <li><a href="https://wa.me/+243972256470">Contact</a></li>
-            <li><a href="#" id="authToggle" class="login-btn">Connexion</a></li>
-        </ul>
-    </nav>
-</header>
-
-<section class="hero">
-    <h1>Votre allié pour réussir tests et entretiens</h1>
-    <p>Développez vos connaissances et maximisez vos chances de succès</p>
-    
-    <!-- Mockup téléphone avec captures d'écran -->
-    <div class="phone-mockup">
-        <div class="phone-screen">
-            <div class="carousel-container" style="border-radius: 0; border: none; max-width: 100%; height: 100%;">
-                <div class="carousel" id="imageCarousel" style="height: 100%;">
-                    <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_065256.jpg" alt="Capture 1">
-                    <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074710.jpg" alt="Capture 2">
-                    <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074733.jpg" alt="Capture 3">
-                </div>
-                <button class="carousel-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-                <button class="carousel-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
-    </div>
-    
-    <button class="download-btn" id="downloadBtn">
-        <i class="fas fa-download"></i> Télécharger l'application
-    </button>
-</section>
-
-<section class="features" id="services">
-    <h2 class="section-title">Domaines de préparation</h2>
-    
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-landmark"></i>
-            </div>
-            <h3>Banque et Assurance</h3>
-            <p>Tests spécialisés pour le secteur financier</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-building"></i>
-            </div>
-            <h3>Administration publique</h3>
-            <p>Préparation aux concours gouvernementaux</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-users"></i>
-            </div>
-            <h3>Concours de recrutement</h3>
-            <p>Tests pour divers postes et secteurs</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-user-tie"></i>
-            </div>
-            <h3>Entretiens d'embauche</h3>
-            <p>Simulations et questions types</p>
-        </div>
-    </div>
-</section>
-
-<section class="about-app" id="about">
-    <div class="about-content">
-        <h2 class="section-title">À propos d'Item RDC</h2>
-        
-        <div class="about-text" style="padding: 0 15px;">
-            <p><strong>📘 <em>Item Rdc 🇨🇩 – Votre allié pour réussir vos tests et entretiens!</em> 🚀</strong></p>
-            
-            <p>💡 <em>Développez vos connaissances et maximisez vos chances de succès</em> grâce à une application innovante et accessible.</p>
-            
-            <p><strong>🔍 Qu'est-ce que Item RDC?</strong></p>
-            <p>Item RDC est une application conçue pour faciliter l'accès aux <em>tests psychotechniques</em> dans plusieurs domaines, notamment:</p>
-            
-            <ul style="list-style: none; margin: 15px 0;">
-                <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Banque et Assurance</em> 🏦</li>
-                <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Administration publique</em> 🏛️</li>
-                <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Concours de recrutement</em> 👥</li>
-                <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Entretiens d'embauche</em> 🎯</li>
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#partners">Partenaires</a></li>
+                <li><a href="https://wa.me/+243972256470">Contact</a></li>
+                <li><a href="#" id="downloadBtn" class="download-btn-nav"><i class="fas fa-download"></i> Télécharger</a></li>
             </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Votre allié pour réussir tests et entretiens</h1>
+        <p>Développez vos connaissances et maximisez vos chances de succès</p>
+        
+        <!-- Mockup téléphone avec captures d'écran -->
+        <div class="phone-mockup">
+            <div class="phone-screen">
+                <div class="carousel-container" style="border-radius: 0; border: none; max-width: 100%; height: 100%;">
+                    <div class="carousel" id="imageCarousel" style="height: 100%;">
+                        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_065256.jpg" alt="Capture 1">
+                        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074710.jpg" alt="Capture 2">
+                        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074733.jpg" alt="Capture 3">
+                    </div>
+                    <button class="carousel-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
-
-<section id="partners" style="padding: 30px 15px; background: white;">
-    <h2 class="section-title">Nos Partenaires</h2>
-    <p style="text-align: center; margin-top: 15px;">En partenariat avec les meilleures institutions de la RDC</p>
-</section>
-
-<footer>
-    <div class="footer-logo">
-        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Picsart_25-06-18_07-01-11-265.jpg" alt="Logo Item RDC">
-        <h3>Item RDC</h3>
-    </div>
-    
-    <div class="social-links">
-        <a href="https://wa.me/+243972256470"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://t.me/worldsolutiontv"><i class="fab fa-telegram"></i></a>
-        <a href="#"><i class="fas fa-envelope"></i></a>
-    </div>
-    
-    <p class="copyright">Copyright © 2018 - <script>document.write(new Date().getFullYear())</script> WorldSolution. Tous droits réservés.</p>
-</footer>
-
-<script>
-    // Au début de votre script
-document.addEventListener('DOMContentLoaded', () => {
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  const onAuthPage = window.location.pathname.includes('index.html');
-  
-  if (!currentUser && !onAuthPage) {
-    window.location.href = 'index.html';
-  }
-});
-
-    // Configuration Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyC5upbYCJgKiThPuhjjt13gl-BLkgkbHRw",
-        authDomain: "itemrdc2.firebaseapp.com",
-        projectId: "itemrdc2",
-        storageBucket: "itemrdc2.appspot.com",
-        messagingSenderId: "777370295032",
-        appId: "1:777370295032:web:e65a514829bd94275fb90d"
-    };
-
-    // Initialisation Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    // Fonctions Firestore
-    async function saveUser(user) {
-        try {
-            await db.collection("users").doc(user.username).set(user);
-            console.log("Utilisateur sauvegardé dans Firestore");
-            return true;
-        } catch (error) {
-            console.error("Erreur Firestore:", error);
-            return false;
-        }
-    }
-
-    async function getUsers() {
-        try {
-            const snapshot = await db.collection("users").get();
-            return snapshot.docs.map(doc => doc.data());
-        } catch (error) {
-            console.error("Erreur Firestore:", error);
-            return [];
-        }
-    }
-
-    async function updateUserStatus(username, isOnline) {
-        try {
-            await db.collection("users").doc(username).update({
-                isOnline,
-                lastLogin: new Date().toISOString()
-            });
-            return true;
-        } catch (error) {
-            console.error("Erreur mise à jour statut:", error);
-            return false;
-        }
-    }
-
-    async function recordDownload(username) {
-        try {
-            await db.collection("downloads").add({
-                username,
-                date: new Date().toISOString()
-            });
-            return true;
-        } catch (error) {
-            console.error("Erreur enregistrement téléchargement:", error);
-            return false;
-        }
-    }
-
-    async function incrementUserDownloads(username) {
-        try {
-            const userRef = db.collection("users").doc(username);
-            await userRef.update({
-                downloads: firebase.firestore.FieldValue.increment(1)
-            });
-            return true;
-        } catch (error) {
-            console.error("Erreur incrémentation téléchargements:", error);
-            return false;
-        }
-    }
-
-    async function deleteUser(username) {
-        try {
-            await db.collection("users").doc(username).delete();
-            
-            // Supprimer aussi les téléchargements associés
-            const downloadsSnapshot = await db.collection("downloads")
-                .where("username", "==", username)
-                .get();
-            
-            const batch = db.batch();
-            downloadsSnapshot.forEach(doc => {
-                batch.delete(doc.ref);
-            });
-            
-            await batch.commit();
-            return true;
-        } catch (error) {
-            console.error("Erreur suppression utilisateur:", error);
-            return false;
-        }
-    }
-
-    // Initialisation des données
-    async function initializeData() {
-        const users = await getUsers();
-        if (users.length === 0) {
-            await saveUser({
-                name: "Administrateur",
-                username: "admin",
-                email: "admin@itemrdc.com",
-                password: "admin123",
-                role: "admin",
-                joinDate: new Date().toISOString(),
-                downloads: 0,
-                lastLogin: null,
-                isOnline: false
-            });
-        }
-    }
-
-    // Menu mobile
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-    });
-
-    // Fermer le menu lorsqu'un élément est sélectionné
-    document.querySelectorAll('#mobileMenu a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
-    });
-
-    // Carrousel amélioré
-    const carousel = document.getElementById('imageCarousel');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let currentIndex = 0;
-    const totalImages = document.querySelectorAll('.carousel img').length;
-    
-    function updateCarousel() {
-        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-    
-    prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
-        updateCarousel();
-    });
-    
-    nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
-        updateCarousel();
-    });
-
-    // Gestion de l'authentification
-    const authModal = document.getElementById('authModal');
-    const authTabs = document.querySelectorAll('.auth-tab');
-    const authForms = document.querySelectorAll('.auth-form');
-    const authToggle = document.getElementById('authToggle');
-    const authError = document.getElementById('authError');
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const userManagementModal = document.getElementById('userManagementModal');
-    const logoutBtn = document.getElementById('logoutBtn');
-
-    // Afficher la modal si non connecté
-    if (!localStorage.getItem('currentUser')) {
-        authModal.style.display = 'flex';
-    }
-
-    // Gestion des onglets
-    authTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            authTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            
-            const tabName = tab.dataset.tab;
-            authForms.forEach(form => {
-                form.classList.remove('active');
-                if (form.id === `${tabName}Form`) {
-                    form.classList.add('active');
-                }
-            });
-            authError.style.display = 'none';
-        });
-    });
-
-    // Ouvrir/fermer la modal
-    authToggle?.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (localStorage.getItem('currentUser')) {
-            window.location.href = 'dashboard.html';
-        } else {
-            authModal.style.display = 'flex';
-        }
-    });
-
-    authModal.addEventListener('click', (e) => {
-        if (e.target === authModal) {
-            authModal.style.display = 'none';
-        }
-    });
-
-    // Connexion
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        authError.style.display = 'none';
         
-        const username = document.getElementById('loginUsername').value;
-        const password = document.getElementById('loginPassword').value;
+        <button class="download-btn" id="mainDownloadBtn">
+            <i class="fas fa-download"></i> Télécharger l'application
+        </button>
+    </section>
+
+    <section class="features" id="services">
+        <h2 class="section-title">Domaines de préparation</h2>
         
-        try {
-            const users = await getUsers();
-            const user = users.find(u => u.username === username && u.password === password);
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h3>Banque et Assurance</h3>
+                <p>Tests spécialisés pour le secteur financier</p>
+            </div>
             
-            if (user) {
-                // Mettre à jour le statut
-                await updateUserStatus(username, true);
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Administration publique</h3>
+                <p>Préparation aux concours gouvernementaux</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Concours de recrutement</h3>
+                <p>Tests pour divers postes et secteurs</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Entretiens d'embauche</h3>
+                <p>Simulations et questions types</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-app" id="about">
+        <div class="about-content">
+            <h2 class="section-title">À propos d'Item RDC</h2>
+            
+            <div class="about-text" style="padding: 0 15px;">
+                <p><strong>📘 <em>Item Rdc 🇨🇩 – Votre allié pour réussir vos tests et entretiens!</em> 🚀</strong></p>
                 
-                // Sauvegarder l'utilisateur courant
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                updateAuthState();
-                authModal.style.display = 'none';
-                window.location.reload();
-            } else {
-                showAuthError('Identifiants incorrects');
-            }
-        } catch (error) {
-            showAuthError('Erreur de connexion');
-            console.error(error);
-        }
-    });
+                <p>💡 <em>Développez vos connaissances et maximisez vos chances de succès</em> grâce à une application innovante et accessible.</p>
+                
+                <p><strong>🔍 Qu'est-ce que Item RDC?</strong></p>
+                <p>Item RDC est une application conçue pour faciliter l'accès aux <em>tests psychotechniques</em> dans plusieurs domaines, notamment:</p>
+                
+                <ul style="list-style: none; margin: 15px 0;">
+                    <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Banque et Assurance</em> 🏦</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Administration publique</em> 🏛️</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Concours de recrutement</em> 👥</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Entretiens d'embauche</em> 🎯</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-    // Inscription
-    registerForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        authError.style.display = 'none';
+    <section id="partners" style="padding: 30px 15px; background: white;">
+        <h2 class="section-title">Nos Partenaires</h2>
+        <p style="text-align: center; margin-top: 15px;">En partenariat avec les meilleures institutions de la RDC</p>
+    </section>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Picsart_25-06-18_07-01-11-265.jpg" alt="Logo Item RDC">
+            <h3>Item RDC</h3>
+        </div>
         
-        const name = document.getElementById('registerName').value;
-        const username = document.getElementById('registerUsername').value;
-        const email = document.getElementById('registerEmail').value;
-        const password = document.getElementById('registerPassword').value;
-        const confirmPassword = document.getElementById('registerConfirmPassword').value;
+        <div class="social-links">
+            <a href="https://wa.me/+243972256470"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://t.me/worldsolutiontv"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
         
-        if (password !== confirmPassword) {
-            showAuthError('Les mots de passe ne correspondent pas');
-            return;
+        <p class="copyright">Copyright © 2018 - <script>document.write(new Date().getFullYear())</script> WorldSolution. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Fermer le menu lorsqu'un élément est sélectionné
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Carrousel amélioré
+        const carousel = document.getElementById('imageCarousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+        const totalImages = document.querySelectorAll('.carousel img').length;
+        
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
         
-        try {
-            const users = await getUsers();
-            
-            if (users.some(u => u.username === username)) {
-                showAuthError('Ce nom d\'utilisateur est déjà pris');
-                return;
-            }
-            
-            if (users.some(u => u.email === email)) {
-                showAuthError('Cet email est déjà utilisé');
-                return;
-            }
-            
-            const newUser = {
-                name,
-                username,
-                email,
-                password,
-                role: 'user',
-                joinDate: new Date().toISOString(),
-                downloads: 0,
-                lastLogin: new Date().toISOString(),
-                isOnline: true
-            };
-            
-            await saveUser(newUser);
-            localStorage.setItem('currentUser', JSON.stringify(newUser));
-            
-            updateAuthState();
-            authModal.style.display = 'none';
-            window.location.href = 'dashboard.html';
-        } catch (error) {
-            showAuthError('Erreur lors de l\'inscription');
-            console.error(error);
-        }
-    });
-
-    // Déconnexion
-    // Correction de la fonction de déconnexion
-// Correction de la fonction de déconnexion
-// Nouvelle version robuste de la fonction de déconnexion
-logoutBtn.addEventListener('click', async function(e) {
-    e.preventDefault();
-    
-    // Désactiver le bouton pendant le traitement
-    const logoutBtn = e.target.closest('button') || e.target;
-    const originalHtml = logoutBtn.innerHTML;
-    logoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Déconnexion...';
-    logoutBtn.disabled = true;
-
-    try {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
-        if (!currentUser) {
-            console.log("Aucun utilisateur connecté, redirection simple");
-            window.location.href = 'index.html';
-            return;
-        }
-
-        console.log("Tentative de déconnexion pour:", currentUser.username);
-        
-        // 1. Mise à jour du statut dans Firestore
-        await db.collection("users").doc(currentUser.username).update({
-            isOnline: false,
-            lastLogin: new Date().toISOString()
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
+            updateCarousel();
         });
         
-        console.log("Statut mis à jour dans Firestore");
-        
-        // 2. Nettoyage local
-        localStorage.removeItem('currentUser');
-        console.log("Données locales nettoyées");
-        
-        // 3. Redirection avec délai pour laisser Firestore terminer
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 500);
-        
-    } catch (error) {
-        console.error("Échec de la déconnexion:", error);
-        
-        // Tentative de déconnexion locale si Firestore échoue
-        localStorage.removeItem('currentUser');
-        
-        // Afficher un message clair
-        const authError = document.getElementById('authError');
-        if (authError) {
-            authError.textContent = "Déconnexion locale effectuée (problème de connexion au serveur)";
-            authError.style.display = 'block';
-        }
-        
-        // Redirection après message
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 2000);
-        
-    } finally {
-        // Réactiver le bouton en cas d'échec
-        logoutBtn.innerHTML = originalHtml;
-        logoutBtn.disabled = false;
-    }
-});
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
 
-        // Téléchargement
-        document.getElementById('downloadBtn').addEventListener('click', async function(e) {
-            e.preventDefault();
-            
-            const user = JSON.parse(localStorage.getItem('currentUser'));
-            
+        // Fonction de téléchargement
+        function downloadApp() {
             // URL GitHub officielle
             const githubUrl = 'https://github.com/WorldSolutionRdc/WorldSolutionRdc.github.io/raw/main/Item_Rdc.apk';
             
@@ -1184,172 +601,24 @@ logoutBtn.addEventListener('click', async function(e) {
             link.click();
             document.body.removeChild(link);
             
-            // Enregistrer le téléchargement si utilisateur connecté
-            if (user) {
-                try {
-                    await incrementUserDownloads(user.username);
-                    await recordDownload(user.username);
-                } catch (error) {
-                    console.error("Erreur enregistrement téléchargement:", error);
-                }
-            }
-            
             // Vérification après 1 seconde
             setTimeout(() => {
                 if (!document.hasFocus()) {
                     window.open(mediafireUrl, '_blank');
                 }
             }, 1000);
+        }
+
+        // Gestion des boutons de téléchargement
+        document.getElementById('mainDownloadBtn').addEventListener('click', downloadApp);
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadApp();
         });
-
-        // Gestion des utilisateurs (Admin)
-        async function loadUserManagement() {
-            try {
-                const users = await getUsers();
-                displayUsers(users);
-                
-                // Recherche dynamique
-                document.getElementById('searchUser').addEventListener('input', (e) => {
-                    const term = e.target.value.toLowerCase();
-                    const filtered = users.filter(u => 
-                        u.name.toLowerCase().includes(term) || 
-                        u.email.toLowerCase().includes(term) || 
-                        u.username.toLowerCase().includes(term)
-                    );
-                    displayUsers(filtered);
-                });
-            } catch (error) {
-                console.error("Erreur chargement utilisateurs:", error);
-            }
-        }
-
-        function displayUsers(users) {
-            const usersList = document.getElementById('usersList');
-            usersList.innerHTML = '';
-
-            if (users.length === 0) {
-                usersList.innerHTML = '<p style="text-align: center; padding: 20px;">Aucun utilisateur trouvé</p>';
-                return;
-            }
-
-            users.forEach(user => {
-                const userDiv = document.createElement('div');
-                userDiv.className = 'user-item';
-                
-                userDiv.innerHTML = `
-                    <div style="flex: 1;">
-                        <div style="font-weight: bold;">
-                            <span class="status-indicator ${user.isOnline ? 'status-online' : 'status-offline'}"></span>
-                            ${user.name}
-                        </div>
-                        <div style="font-size: 0.9em; color: #666;">
-                            ${user.email} • ${user.username}
-                            ${user.role === 'admin' ? '<span style="color: var(--primary); font-weight: bold;"> (Admin)</span>' : ''}
-                        </div>
-                        <div style="font-size: 0.8em; margin-top: 5px;">
-                            <span class="badge">Inscrit le: ${new Date(user.joinDate).toLocaleDateString()}</span>
-                            <span class="badge">Dernière connexion: ${user.lastLogin ? new Date(user.lastLogin).toLocaleString() : 'Jamais'}</span>
-                            <span class="badge">Téléchargements: ${user.downloads || 0}</span>
-                            <span class="badge">Statut: ${user.isOnline ? '<span style="color: var(--secondary);">En ligne</span>' : '<span style="color: var(--error);">Hors ligne</span>'}</span>
-                        </div>
-                    </div>
-                    
-                    ${user.role !== 'admin' ? `
-                    <button class="delete-user-btn" data-username="${user.username}">
-                        <i class="fas fa-trash"></i> Supprimer
-                    </button>` : ''}
-                `;
-
-                usersList.appendChild(userDiv);
-            });
-
-            // Gestion des boutons de suppression
-            document.querySelectorAll('.delete-user-btn').forEach(btn => {
-                btn.addEventListener('click', async (e) => {
-                    const username = e.currentTarget.dataset.username;
-                    const users = await getUsers();
-                    const user = users.find(u => u.username === username);
-                    
-                    if (confirm(`Voulez-vous vraiment supprimer ${user.name} (${user.email}) ?\nCette action est irréversible.`)) {
-                        try {
-                            await deleteUser(username);
-                            loadUserManagement();
-                        } catch (error) {
-                            console.error("Erreur suppression:", error);
-                            alert("Erreur lors de la suppression");
-                        }
-                    }
-                });
-            });
-        }
-
-        // Mettre à jour l'état d'authentification
-        function updateAuthState() {
-            const user = JSON.parse(localStorage.getItem('currentUser'));
-            
-            if (user) {
-                if (user.role === 'admin') {
-                    document.getElementById('adminManagementItem').style.display = 'block';
-                    
-                    // Gestion de la modale admin
-                    document.getElementById('userManagementBtn').addEventListener('click', (e) => {
-                        e.preventDefault();
-                        document.getElementById('userManagementModal').style.display = 'flex';
-                        loadUserManagement();
-                    });
-                } else {
-                    document.getElementById('adminManagementItem').style.display = 'none';
-                }
-
-                // Menu desktop
-                if (authToggle) {
-                    authToggle.innerHTML = '<i class="fas fa-user"></i> Mon compte';
-                    authToggle.href = 'dashboard.html';
-                    authToggle.classList.remove('login-btn');
-                }
-            } else {
-                // Menu mobile
-                document.getElementById('adminManagementItem').style.display = 'none';
-                
-                // Menu desktop
-                if (authToggle) {
-                    authToggle.innerHTML = 'Connexion';
-                    authToggle.href = '#';
-                    authToggle.classList.add('login-btn');
-                }
-            }
-        }
-
-        // Fermer la modale de gestion utilisateur
-        document.getElementById('closeUserManagement').addEventListener('click', () => {
-            document.getElementById('userManagementModal').style.display = 'none';
-        });
-
-        // Fermer la modale en cliquant à l'extérieur
-        userManagementModal.addEventListener('click', (e) => {
-            if (e.target === userManagementModal) {
-                userManagementModal.style.display = 'none';
-            }
-        });
-
-        // Afficher les erreurs
-        function showAuthError(message) {
-            authError.textContent = message;
-            authError.style.display = 'block';
-            authError.style.animation = 'none';
-            void authError.offsetWidth;
-            authError.style.animation = 'shake 0.5s';
-        }
-
-        // Initialisation au chargement
-        document.addEventListener('DOMContentLoaded', async () => {
-            await initializeData();
-            updateAuthState();
-            
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (currentUser && currentUser.role === 'admin') {
-                loadUserManagement();
-            }
+        document.getElementById('downloadBtnMobile').addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadApp();
+            mobileMenu.classList.remove('active');
         });
     </script>
 </body>
