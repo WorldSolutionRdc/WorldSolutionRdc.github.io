@@ -34,6 +34,27 @@
             overflow-x: hidden;
         }
 
+        /* Date et Heure */
+        .datetime {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.8);
+            padding: 8px 15px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .datetime i {
+            color: var(--primary);
+        }
+
         /* Menu Hamburger */
         .menu-btn {
             position: fixed;
@@ -154,6 +175,7 @@
         .hero {
             padding: 30px 15px;
             text-align: center;
+            margin-top: 60px;
         }
 
         .hero h1 {
@@ -267,6 +289,38 @@
             font-size: 30px;
             color: var(--primary);
             margin-bottom: 10px;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 30px 15px;
+            background: white;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-description {
+            text-align: center;
+            margin-top: 15px;
+            color: #555;
         }
 
         /* Footer */
@@ -384,6 +438,13 @@
                 border-width: 10px;
                 border-radius: 30px;
             }
+            
+            .datetime {
+                font-size: 12px;
+                padding: 6px 10px;
+                top: 15px;
+                left: 15px;
+            }
         }
 
         /* Responsive */
@@ -411,6 +472,12 @@
     </style>
 </head>
 <body>
+    <!-- Date et Heure -->
+    <div class="datetime">
+        <i class="far fa-clock"></i>
+        <span id="currentDateTime"></span>
+    </div>
+
     <!-- Menu Mobile -->
     <div class="menu-btn" id="menuBtn">
         <i class="fas fa-bars"></i>
@@ -421,6 +488,9 @@
             <li><a href="#about"><i class="fas fa-info-circle"></i> À propos</a></li>
             <li><a href="#services"><i class="fas fa-cogs"></i> Nos Services</a></li>
             <li><a href="#partners"><i class="fas fa-handshake"></i> Partenaires</a></li>
+            <li><a href="#installation"><i class="fas fa-download"></i> Installation</a></li>
+            <li><a href="#utilisation"><i class="fas fa-play-circle"></i> Utilisation</a></li>
+            <li><a href="https://wa.me/+243972256470"><i class="fas fa-code"></i> Contacter Développeur</a></li>
             <li><a href="#" id="downloadBtnMobile"><i class="fas fa-download"></i> Télécharger</a></li>
         </ul>
     </div>
@@ -438,7 +508,8 @@
                 <li><a href="#about">À propos</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#partners">Partenaires</a></li>
-                <li><a href="https://wa.me/+243972256470">Contact</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#utilisation">Utilisation</a></li>
                 <li><a href="#" id="downloadBtn" class="download-btn-nav"><i class="fas fa-download"></i> Télécharger</a></li>
             </ul>
         </nav>
@@ -506,7 +577,7 @@
         </div>
     </section>
 
-    <section class="about-app" id="about">
+        <section class="about-app" id="about">
         <div class="about-content">
             <h2 class="section-title">À propos d'Item RDC</h2>
             
@@ -528,6 +599,28 @@
         </div>
     </section>
 
+    <!-- Section Installation Vidéo -->
+    <section class="video-section" id="installation">
+        <h2 class="section-title">Comment installer l'application</h2>
+        <div class="video-container">
+            <iframe src="https://drive.google.com/file/d/1Gprr9usUBTcLTh_VDAw2kdnzYS4dM91W/preview" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="video-description">
+            <p>Suivez ces étapes simples pour installer l'application Item RDC sur votre appareil Android.</p>
+        </div>
+    </section>
+
+    <!-- Section Utilisation Vidéo -->
+    <section class="video-section" id="utilisation">
+        <h2 class="section-title">Comment utiliser l'application</h2>
+        <div class="video-container">
+            <iframe src="https://drive.google.com/file/d/1GrdcMXH3BuSmr9um3Yy5LYN0k-_aJI7f/preview" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="video-description">
+            <p>Découvrez comment naviguer dans l'application et tirer le meilleur parti de ses fonctionnalités.</p>
+        </div>
+    </section>
+
     <section id="partners" style="padding: 30px 15px; background: white;">
         <h2 class="section-title">Nos Partenaires</h2>
         <p style="text-align: center; margin-top: 15px;">En partenariat avec les meilleures institutions de la RDC</p>
@@ -542,13 +635,32 @@
         <div class="social-links">
             <a href="https://wa.me/+243972256470"><i class="fab fa-whatsapp"></i></a>
             <a href="https://t.me/worldsolutiontv"><i class="fab fa-telegram"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
+            <a href="mailto:worldsolutiontv@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
         
         <p class="copyright">Copyright © 2018 - <script>document.write(new Date().getFullYear())</script> WorldSolution. Tous droits réservés.</p>
     </footer>
 
     <script>
+        // Afficher la date et l'heure
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            document.getElementById('currentDateTime').textContent = now.toLocaleDateString('fr-FR', options);
+        }
+        
+        // Mettre à jour toutes les secondes
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
         // Menu mobile
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -619,6 +731,12 @@
             e.preventDefault();
             downloadApp();
             mobileMenu.classList.remove('active');
+        });
+
+        // Gestion du clic sur l'icône email
+        document.querySelector('a[href^="mailto:"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'mailto:worldsolutiontv@gmail.com?subject=Question%20sur%20Item%20RDC&body=Bonjour,%20je%20vous%20contacte%20au%20sujet%20de...';
         });
     </script>
 </body>
