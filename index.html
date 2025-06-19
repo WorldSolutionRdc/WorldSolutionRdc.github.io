@@ -35,24 +35,25 @@
         }
 
         /* Date et Heure */
+        .datetime-container {
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
         .datetime {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
+            display: inline-block;
             background: rgba(255,255,255,0.8);
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 30px;
-            box-shadow: var(--shadow);
             font-size: 14px;
             font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            box-shadow: var(--shadow);
         }
 
         .datetime i {
             color: var(--primary);
+            margin-right: 5px;
         }
 
         /* Menu Hamburger */
@@ -116,6 +117,9 @@
             position: sticky;
             top: 0;
             z-index: 100;
+        }
+
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -175,7 +179,6 @@
         .hero {
             padding: 30px 15px;
             text-align: center;
-            margin-top: 60px;
         }
 
         .hero h1 {
@@ -441,9 +444,7 @@
             
             .datetime {
                 font-size: 12px;
-                padding: 6px 10px;
-                top: 15px;
-                left: 15px;
+                padding: 4px 8px;
             }
         }
 
@@ -472,12 +473,6 @@
     </style>
 </head>
 <body>
-    <!-- Date et Heure -->
-    <div class="datetime">
-        <i class="far fa-clock"></i>
-        <span id="currentDateTime"></span>
-    </div>
-
     <!-- Menu Mobile -->
     <div class="menu-btn" id="menuBtn">
         <i class="fas fa-bars"></i>
@@ -496,23 +491,33 @@
     </div>
 
     <header>
-        <div class="logo-container">
-            <div class="app-logo">
-                <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Picsart_25-06-18_07-01-11-265.jpg" alt="Logo Item RDC">
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="app-logo">
+                    <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Picsart_25-06-18_07-01-11-265.jpg" alt="Logo Item RDC">
+                </div>
+                <h1>Item RDC</h1>
             </div>
-            <h1>Item RDC</h1>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#partners">Partenaires</a></li>
+                    <li><a href="#installation">Installation</a></li>
+                    <li><a href="#utilisation">Utilisation</a></li>
+                    <li><a href="#" id="downloadBtn" class="download-btn-nav"><i class="fas fa-download"></i> Télécharger</a></li>
+                </ul>
+            </nav>
         </div>
         
-        <nav class="desktop-nav">
-            <ul>
-                <li><a href="#about">À propos</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#partners">Partenaires</a></li>
-                <li><a href="#installation">Installation</a></li>
-                <li><a href="#utilisation">Utilisation</a></li>
-                <li><a href="#" id="downloadBtn" class="download-btn-nav"><i class="fas fa-download"></i> Télécharger</a></li>
-            </ul>
-        </nav>
+        <!-- Date et Heure sous le titre -->
+        <div class="datetime-container">
+            <div class="datetime">
+                <i class="far fa-clock"></i>
+                <span id="currentDateTime"></span>
+            </div>
+        </div>
     </header>
 
     <section class="hero">
@@ -571,13 +576,13 @@
                 <div class="feature-icon">
                     <i class="fas fa-user-tie"></i>
                 </div>
-                <h3>Entretiens d'embauche</h3>
+                                <h3>Entretiens d'embauche</h3>
                 <p>Simulations et questions types</p>
             </div>
         </div>
     </section>
 
-        <section class="about-app" id="about">
+    <section class="about-app" id="about">
         <div class="about-content">
             <h2 class="section-title">À propos d'Item RDC</h2>
             
@@ -642,7 +647,7 @@
     </footer>
 
     <script>
-        // Afficher la date et l'heure
+        // Afficher la date et l'heure avec secondes
         function updateDateTime() {
             const now = new Date();
             const options = { 
@@ -657,7 +662,7 @@
             document.getElementById('currentDateTime').textContent = now.toLocaleDateString('fr-FR', options);
         }
         
-        // Mettre à jour toutes les secondes
+        // Mettre à jour chaque seconde pour un affichage en temps réel
         updateDateTime();
         setInterval(updateDateTime, 1000);
 
