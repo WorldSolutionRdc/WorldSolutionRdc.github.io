@@ -588,6 +588,9 @@
             }
         }
     </style>
+    <!-- Import Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <!-- Menu Mobile -->
@@ -627,330 +630,408 @@
                     <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" required>
                 </div>
                 <div class="inputBox">
-                    <input type="password" id="loginPassword" placeholder="Mot de passe" required>
-                </div>
-                <button type="submit" class="auth-btn">
-                    <i class="fas fa-sign-in-alt"></i> Se connecter
-                </button>
-            </form>
-            
-            <!-- Formulaire d'inscription -->
-            <form id="registerForm" class="auth-form">
-                <div class="inputBox">
-                    <input type="text" id="registerName" placeholder="Nom complet" required>
-                </div>
-                <div class="inputBox">
-                    <input type="text" id="registerUsername" placeholder="Nom d'utilisateur" required>
-                </div>
-                <div class="inputBox">
-                    <input type="email" id="registerEmail" placeholder="Email" required>
-                </div>
-                <div class="inputBox">
-                    <input type="password" id="registerPassword" placeholder="Mot de passe" required>
-                </div>
-                <div class="inputBox">
-                    <input type="password" id="registerConfirmPassword" placeholder="Confirmer mot de passe" required>
-                </div>
-                <button type="submit" class="auth-btn">
-                    <i class="fas fa-user-plus"></i> S'inscrire
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modale de gestion utilisateur -->
-    <div id="userManagementModal" class="user-management-modal">
-        <div class="user-management-container">
-            <h2><i class="fas fa-users-cog"></i> Gestion des Utilisateurs</h2>
-            
-            <div class="inputBox" style="display: flex; gap: 10px; margin: 20px 0;">
-                <input type="text" id="searchUser" placeholder="Rechercher par nom, email ou username" style="flex: 1;">
-                <button id="searchBtn" class="auth-btn" style="width: auto; padding: 0 15px;">
-                    <i class="fas fa-search"></i>
-                </button>
+                                    <input type="password" id="loginPassword" placeholder="Mot de passe" required>
             </div>
-            
-            <div id="usersList"></div>
-            
-            <button id="closeUserManagement" class="auth-btn" style="margin-top: 20px; background: var(--dark);">
-                <i class="fas fa-times"></i> Fermer
+            <button type="submit" class="auth-btn">
+                <i class="fas fa-sign-in-alt"></i> Se connecter
+            </button>
+        </form>
+        
+        <!-- Formulaire d'inscription -->
+        <form id="registerForm" class="auth-form">
+            <div class="inputBox">
+                <input type="text" id="registerName" placeholder="Nom complet" required>
+            </div>
+            <div class="inputBox">
+                <input type="text" id="registerUsername" placeholder="Nom d'utilisateur" required>
+            </div>
+            <div class="inputBox">
+                <input type="email" id="registerEmail" placeholder="Email" required>
+            </div>
+            <div class="inputBox">
+                <input type="password" id="registerPassword" placeholder="Mot de passe" required>
+            </div>
+            <div class="inputBox">
+                <input type="password" id="registerConfirmPassword" placeholder="Confirmer mot de passe" required>
+            </div>
+            <button type="submit" class="auth-btn">
+                <i class="fas fa-user-plus"></i> S'inscrire
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Modale de gestion utilisateur -->
+<div id="userManagementModal" class="user-management-modal">
+    <div class="user-management-container">
+        <h2><i class="fas fa-users-cog"></i> Gestion des Utilisateurs</h2>
+        
+        <div class="inputBox" style="display: flex; gap: 10px; margin: 20px 0;">
+            <input type="text" id="searchUser" placeholder="Rechercher par nom, email ou username" style="flex: 1;">
+            <button id="searchBtn" class="auth-btn" style="width: auto; padding: 0 15px;">
+                <i class="fas fa-search"></i>
             </button>
         </div>
-    </div>
-
-    <header>
-        <div class="logo-container">
-            <div class="app-logo">
-                <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Picsart_25-06-18_07-01-11-265.jpg" alt="Logo Item RDC">
-            </div>
-            <h1>Item RDC</h1>
-        </div>
         
-        <nav class="desktop-nav">
-            <ul>
-                <li><a href="#about">À propos</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#partners">Partenaires</a></li>
-                <li><a href="https://wa.me/+243972256470">Contact</a></li>
-                <li><a href="#" id="authToggle" class="login-btn">Connexion</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>Votre allié pour réussir tests et entretiens</h1>
-        <p>Développez vos connaissances et maximisez vos chances de succès</p>
+        <div id="usersList"></div>
         
-        <!-- Mockup téléphone avec captures d'écran -->
-        <div class="phone-mockup">
-            <div class="phone-screen">
-                <div class="carousel-container" style="border-radius: 0; border: none; max-width: 100%; height: 100%;">
-                    <div class="carousel" id="imageCarousel" style="height: 100%;">
-                        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_065256.jpg" alt="Capture 1">
-                        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074710.jpg" alt="Capture 2">
-                        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074733.jpg" alt="Capture 3">
-                    </div>
-                    <button class="carousel-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
-        
-        <button class="download-btn" id="downloadBtn">
-            <i class="fas fa-download"></i> Télécharger l'application
+        <button id="closeUserManagement" class="auth-btn" style="margin-top: 20px; background: var(--dark);">
+            <i class="fas fa-times"></i> Fermer
         </button>
-    </section>
+    </div>
+</div>
 
-    <section class="features" id="services">
-        <h2 class="section-title">Domaines de préparation</h2>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-landmark"></i>
-                </div>
-                <h3>Banque et Assurance</h3>
-                <p>Tests spécialisés pour le secteur financier</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-building"></i>
-                </div>
-                <h3>Administration publique</h3>
-                <p>Préparation aux concours gouvernementaux</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3>Concours de recrutement</h3>
-                <p>Tests pour divers postes et secteurs</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-user-tie"></i>
-                </div>
-                <h3>Entretiens d'embauche</h3>
-                <p>Simulations et questions types</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="about-app" id="about">
-        <div class="about-content">
-            <h2 class="section-title">À propos d'Item RDC</h2>
-            
-            <div class="about-text" style="padding: 0 15px;">
-                <p><strong>📘 <em>Item Rdc 🇨🇩 – Votre allié pour réussir vos tests et entretiens!</em> 🚀</strong></p>
-                
-                <p>💡 <em>Développez vos connaissances et maximisez vos chances de succès</em> grâce à une application innovante et accessible.</p>
-                
-                <p><strong>🔍 Qu'est-ce que Item RDC?</strong></p>
-                <p>Item RDC est une application conçue pour faciliter l'accès aux <em>tests psychotechniques</em> dans plusieurs domaines, notamment:</p>
-                
-                <ul style="list-style: none; margin: 15px 0;">
-                    <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Banque et Assurance</em> 🏦</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Administration publique</em> 🏛️</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Concours de recrutement</em> 👥</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Entretiens d'embauche</em> 🎯</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="partners" style="padding: 30px 15px; background: white;">
-        <h2 class="section-title">Nos Partenaires</h2>
-        <p style="text-align: center; margin-top: 15px;">En partenariat avec les meilleures institutions de la RDC</p>
-    </section>
-
-    <footer>
-        <div class="footer-logo">
+<header>
+    <div class="logo-container">
+        <div class="app-logo">
             <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Picsart_25-06-18_07-01-11-265.jpg" alt="Logo Item RDC">
-            <h3>Item RDC</h3>
         </div>
-        
-        <div class="social-links">
-            <a href="https://wa.me/+243972256470"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://t.me/worldsolutiontv"><i class="fab fa-telegram"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
-        </div>
-        
-        <p class="copyright">Copyright © 2018 - <script>document.write(new Date().getFullYear())</script> WorldSolution. Tous droits réservés.</p>
-    </footer>
+        <h1>Item RDC</h1>
+    </div>
+    
+    <nav class="desktop-nav">
+        <ul>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#partners">Partenaires</a></li>
+            <li><a href="https://wa.me/+243972256470">Contact</a></li>
+            <li><a href="#" id="authToggle" class="login-btn">Connexion</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <script>
-        // Initialisation des données
-        function initializeData() {
-            if (!localStorage.getItem('users')) {
-                const adminAccount = {
-                    name: "Administrateur",
-                    username: "admin",
-                    email: "admin@itemrdc.com",
-                    password: "admin123",
-                    role: "admin",
-                    joinDate: new Date().toISOString(),
-                    downloads: 0,
-                    lastLogin: null,
-                    isOnline: false
-                };
-                localStorage.setItem('users', JSON.stringify([adminAccount]));
-            }
+<section class="hero">
+    <h1>Votre allié pour réussir tests et entretiens</h1>
+    <p>Développez vos connaissances et maximisez vos chances de succès</p>
+    
+    <!-- Mockup téléphone avec captures d'écran -->
+    <div class="phone-mockup">
+        <div class="phone-screen">
+            <div class="carousel-container" style="border-radius: 0; border: none; max-width: 100%; height: 100%;">
+                <div class="carousel" id="imageCarousel" style="height: 100%;">
+                    <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_065256.jpg" alt="Capture 1">
+                    <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074710.jpg" alt="Capture 2">
+                    <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Screenshot_20250618_074733.jpg" alt="Capture 3">
+                </div>
+                <button class="carousel-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <button class="download-btn" id="downloadBtn">
+        <i class="fas fa-download"></i> Télécharger l'application
+    </button>
+</section>
+
+<section class="features" id="services">
+    <h2 class="section-title">Domaines de préparation</h2>
+    
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-landmark"></i>
+            </div>
+            <h3>Banque et Assurance</h3>
+            <p>Tests spécialisés pour le secteur financier</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-building"></i>
+            </div>
+            <h3>Administration publique</h3>
+            <p>Préparation aux concours gouvernementaux</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <h3>Concours de recrutement</h3>
+            <p>Tests pour divers postes et secteurs</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            <h3>Entretiens d'embauche</h3>
+            <p>Simulations et questions types</p>
+        </div>
+    </div>
+</section>
+
+<section class="about-app" id="about">
+    <div class="about-content">
+        <h2 class="section-title">À propos d'Item RDC</h2>
+        
+        <div class="about-text" style="padding: 0 15px;">
+            <p><strong>📘 <em>Item Rdc 🇨🇩 – Votre allié pour réussir vos tests et entretiens!</em> 🚀</strong></p>
             
-            if (!localStorage.getItem('downloads')) {
-                localStorage.setItem('downloads', JSON.stringify([]));
-            }
+            <p>💡 <em>Développez vos connaissances et maximisez vos chances de succès</em> grâce à une application innovante et accessible.</p>
             
-            if (!localStorage.getItem('connectedUsers')) {
-                localStorage.setItem('connectedUsers', JSON.stringify([]));
-            }
+            <p><strong>🔍 Qu'est-ce que Item RDC?</strong></p>
+            <p>Item RDC est une application conçue pour faciliter l'accès aux <em>tests psychotechniques</em> dans plusieurs domaines, notamment:</p>
+            
+            <ul style="list-style: none; margin: 15px 0;">
+                <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Banque et Assurance</em> 🏦</li>
+                <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Administration publique</em> 🏛️</li>
+                <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Concours de recrutement</em> 👥</li>
+                <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> <em>Entretiens d'embauche</em> 🎯</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="partners" style="padding: 30px 15px; background: white;">
+    <h2 class="section-title">Nos Partenaires</h2>
+    <p style="text-align: center; margin-top: 15px;">En partenariat avec les meilleures institutions de la RDC</p>
+</section>
+
+<footer>
+    <div class="footer-logo">
+        <img src="https://raw.githubusercontent.com/WorldSolutionRdc/WorldSolutionRdc.github.io/main/images/Picsart_25-06-18_07-01-11-265.jpg" alt="Logo Item RDC">
+        <h3>Item RDC</h3>
+    </div>
+    
+    <div class="social-links">
+        <a href="https://wa.me/+243972256470"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://t.me/worldsolutiontv"><i class="fab fa-telegram"></i></a>
+        <a href="#"><i class="fas fa-envelope"></i></a>
+    </div>
+    
+    <p class="copyright">Copyright © 2018 - <script>document.write(new Date().getFullYear())</script> WorldSolution. Tous droits réservés.</p>
+</footer>
+
+<script>
+    // Au début de votre script
+document.addEventListener('DOMContentLoaded', () => {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const onAuthPage = window.location.pathname.includes('index.html');
+  
+  if (!currentUser && !onAuthPage) {
+    window.location.href = 'index.html';
+  }
+});
+
+    // Configuration Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyC5upbYCJgKiThPuhjjt13gl-BLkgkbHRw",
+        authDomain: "itemrdc2.firebaseapp.com",
+        projectId: "itemrdc2",
+        storageBucket: "itemrdc2.appspot.com",
+        messagingSenderId: "777370295032",
+        appId: "1:777370295032:web:e65a514829bd94275fb90d"
+    };
+
+    // Initialisation Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Fonctions Firestore
+    async function saveUser(user) {
+        try {
+            await db.collection("users").doc(user.username).set(user);
+            console.log("Utilisateur sauvegardé dans Firestore");
+            return true;
+        } catch (error) {
+            console.error("Erreur Firestore:", error);
+            return false;
         }
-        initializeData();
+    }
 
-        // Menu mobile
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-        });
+    async function getUsers() {
+        try {
+            const snapshot = await db.collection("users").get();
+            return snapshot.docs.map(doc => doc.data());
+        } catch (error) {
+            console.error("Erreur Firestore:", error);
+            return [];
+        }
+    }
 
-        // Fermer le menu lorsqu'un élément est sélectionné
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
+    async function updateUserStatus(username, isOnline) {
+        try {
+            await db.collection("users").doc(username).update({
+                isOnline,
+                lastLogin: new Date().toISOString()
             });
-        });
-
-        // Carrousel amélioré
-        const carousel = document.getElementById('imageCarousel');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        let currentIndex = 0;
-        const totalImages = document.querySelectorAll('.carousel img').length;
-        
-        function updateCarousel() {
-            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            return true;
+        } catch (error) {
+            console.error("Erreur mise à jour statut:", error);
+            return false;
         }
-        
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
-            updateCarousel();
-        });
-        
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
-            updateCarousel();
-        });
+    }
 
-        // Gestion de l'authentification
-        const authModal = document.getElementById('authModal');
-        const authTabs = document.querySelectorAll('.auth-tab');
-        const authForms = document.querySelectorAll('.auth-form');
-        const authToggle = document.getElementById('authToggle');
-        const authError = document.getElementById('authError');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const userManagementModal = document.getElementById('userManagementModal');
-        const logoutBtn = document.getElementById('logoutBtn');
+    async function recordDownload(username) {
+        try {
+            await db.collection("downloads").add({
+                username,
+                date: new Date().toISOString()
+            });
+            return true;
+        } catch (error) {
+            console.error("Erreur enregistrement téléchargement:", error);
+            return false;
+        }
+    }
 
-        // Afficher la modal si non connecté
-        if (!localStorage.getItem('currentUser')) {
+    async function incrementUserDownloads(username) {
+        try {
+            const userRef = db.collection("users").doc(username);
+            await userRef.update({
+                downloads: firebase.firestore.FieldValue.increment(1)
+            });
+            return true;
+        } catch (error) {
+            console.error("Erreur incrémentation téléchargements:", error);
+            return false;
+        }
+    }
+
+    async function deleteUser(username) {
+        try {
+            await db.collection("users").doc(username).delete();
+            
+            // Supprimer aussi les téléchargements associés
+            const downloadsSnapshot = await db.collection("downloads")
+                .where("username", "==", username)
+                .get();
+            
+            const batch = db.batch();
+            downloadsSnapshot.forEach(doc => {
+                batch.delete(doc.ref);
+            });
+            
+            await batch.commit();
+            return true;
+        } catch (error) {
+            console.error("Erreur suppression utilisateur:", error);
+            return false;
+        }
+    }
+
+    // Initialisation des données
+    async function initializeData() {
+        const users = await getUsers();
+        if (users.length === 0) {
+            await saveUser({
+                name: "Administrateur",
+                username: "admin",
+                email: "admin@itemrdc.com",
+                password: "admin123",
+                role: "admin",
+                joinDate: new Date().toISOString(),
+                downloads: 0,
+                lastLogin: null,
+                isOnline: false
+            });
+        }
+    }
+
+    // Menu mobile
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+    });
+
+    // Fermer le menu lorsqu'un élément est sélectionné
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+    });
+
+    // Carrousel amélioré
+    const carousel = document.getElementById('imageCarousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
+    const totalImages = document.querySelectorAll('.carousel img').length;
+    
+    function updateCarousel() {
+        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+    
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
+        updateCarousel();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
+        updateCarousel();
+    });
+
+    // Gestion de l'authentification
+    const authModal = document.getElementById('authModal');
+    const authTabs = document.querySelectorAll('.auth-tab');
+    const authForms = document.querySelectorAll('.auth-form');
+    const authToggle = document.getElementById('authToggle');
+    const authError = document.getElementById('authError');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const userManagementModal = document.getElementById('userManagementModal');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // Afficher la modal si non connecté
+    if (!localStorage.getItem('currentUser')) {
+        authModal.style.display = 'flex';
+    }
+
+    // Gestion des onglets
+    authTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            authTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            const tabName = tab.dataset.tab;
+            authForms.forEach(form => {
+                form.classList.remove('active');
+                if (form.id === `${tabName}Form`) {
+                    form.classList.add('active');
+                }
+            });
+            authError.style.display = 'none';
+        });
+    });
+
+    // Ouvrir/fermer la modal
+    authToggle?.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (localStorage.getItem('currentUser')) {
+            window.location.href = 'dashboard.html';
+        } else {
             authModal.style.display = 'flex';
         }
+    });
 
-        // Gestion des onglets
-        authTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                authTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                const tabName = tab.dataset.tab;
-                authForms.forEach(form => {
-                    form.classList.remove('active');
-                    if (form.id === `${tabName}Form`) {
-                        form.classList.add('active');
-                    }
-                });
-                authError.style.display = 'none';
-            });
-        });
+    authModal.addEventListener('click', (e) => {
+        if (e.target === authModal) {
+            authModal.style.display = 'none';
+        }
+    });
 
-        // Ouvrir/fermer la modal
-        authToggle?.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (localStorage.getItem('currentUser')) {
-                window.location.href = 'dashboard.html';
-            } else {
-                authModal.style.display = 'flex';
-            }
-        });
-
-        authModal.addEventListener('click', (e) => {
-            if (e.target === authModal) {
-                authModal.style.display = 'none';
-            }
-        });
-
-        // Connexion
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            authError.style.display = 'none';
-            
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            const users = JSON.parse(localStorage.getItem('users')) || [];
+    // Connexion
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        authError.style.display = 'none';
+        
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+        
+        try {
+            const users = await getUsers();
             const user = users.find(u => u.username === username && u.password === password);
             
             if (user) {
-                // Mettre à jour le statut de l'utilisateur
-                user.lastLogin = new Date().toISOString();
-                user.isOnline = true;
-                localStorage.setItem('users', JSON.stringify(users));
+                // Mettre à jour le statut
+                await updateUserStatus(username, true);
                 
-                // Mettre à jour les utilisateurs connectés
-                const connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
-                if (!connectedUsers.some(u => u.username === user.username)) {
-                    connectedUsers.push({
-                        username: user.username,
-                        name: user.name,
-                        loginTime: new Date().toISOString(),
-                        isOnline: true
-                    });
-                    localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
-                } else {
-                    // Mettre à jour l'heure de connexion si l'utilisateur existe déjà
-                    const existingUser = connectedUsers.find(u => u.username === user.username);
-                    if (existingUser) {
-                        existingUser.loginTime = new Date().toISOString();
-                        existingUser.isOnline = true;
-                        localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
-                    }
-                }
-                
+                // Sauvegarder l'utilisateur courant
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 updateAuthState();
                 authModal.style.display = 'none';
@@ -958,25 +1039,30 @@
             } else {
                 showAuthError('Identifiants incorrects');
             }
-        });
+        } catch (error) {
+            showAuthError('Erreur de connexion');
+            console.error(error);
+        }
+    });
 
-        // Inscription
-        registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            authError.style.display = 'none';
-            
-            const name = document.getElementById('registerName').value;
-            const username = document.getElementById('registerUsername').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('registerConfirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                showAuthError('Les mots de passe ne correspondent pas');
-                return;
-            }
-            
-            const users = JSON.parse(localStorage.getItem('users')) || [];
+    // Inscription
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        authError.style.display = 'none';
+        
+        const name = document.getElementById('registerName').value;
+        const username = document.getElementById('registerUsername').value;
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+        const confirmPassword = document.getElementById('registerConfirmPassword').value;
+        
+        if (password !== confirmPassword) {
+            showAuthError('Les mots de passe ne correspondent pas');
+            return;
+        }
+        
+        try {
+            const users = await getUsers();
             
             if (users.some(u => u.username === username)) {
                 showAuthError('Ce nom d\'utilisateur est déjà pris');
@@ -1000,71 +1086,50 @@
                 isOnline: true
             };
             
-            users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(users));
+            await saveUser(newUser);
             localStorage.setItem('currentUser', JSON.stringify(newUser));
-            
-            // Ajouter aux utilisateurs connectés
-            const connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
-            connectedUsers.push({
-                username: newUser.username,
-                name: newUser.name,
-                loginTime: new Date().toISOString(),
-                isOnline: true
-            });
-            localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
             
             updateAuthState();
             authModal.style.display = 'none';
             window.location.href = 'dashboard.html';
-        });
+        } catch (error) {
+            showAuthError('Erreur lors de l\'inscription');
+            console.error(error);
+        }
+    });
 
-        // Déconnexion
-        document.getElementById('logoutBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Mettre à jour le statut de l'utilisateur
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (currentUser) {
-                const users = JSON.parse(localStorage.getItem('users')) || [];
-                const user = users.find(u => u.username === currentUser.username);
-                if (user) {
-                    user.isOnline = false;
-                    localStorage.setItem('users', JSON.stringify(users));
-                }
-                
-                // Mettre à jour les utilisateurs connectés
-                const connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
-                const connectedUser = connectedUsers.find(u => u.username === currentUser.username);
-                if (connectedUser) {
-                    connectedUser.isOnline = false;
-                    localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
-                }
-            }
-            
-            // 1. Supprimer l'utilisateur courant
-            localStorage.removeItem('currentUser');
-            
-            // 2. Fermer le menu mobile si ouvert
-            document.getElementById('mobileMenu').classList.remove('active');
-            document.body.style.overflow = 'auto';
-            
-            // 3. Forcer le rechargement de la page
-            window.location.href = 'index.html';
-            
-            // 4. Afficher la modale de connexion après le rechargement
-            setTimeout(() => {
-                document.getElementById('authModal').style.display = 'flex';
-            }, 100);
-        });
+    // Déconnexion
+    // Correction de la fonction de déconnexion
+logoutBtn.addEventListener('click', async function(e) {
+  e.preventDefault();
+  
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  if (currentUser) {
+    try {
+      // 1. Mettre à jour le statut dans Firestore
+      await db.collection("users").doc(currentUser.username).update({
+        isOnline: false,
+        lastLogin: new Date().toISOString()
+      });
+      
+      // 2. Supprimer les données locales
+      localStorage.removeItem('currentUser');
+      
+      // 3. Rediriger vers la page de connexion
+      window.location.href = 'index.html'; // Force un rechargement complet
+      
+    } catch (error) {
+      console.error("Erreur lors de la déconnexion:", error);
+      alert("Erreur lors de la déconnexion");
+    }
+  }
+});
 
         // Téléchargement
-        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+        document.getElementById('downloadBtn').addEventListener('click', async function(e) {
             e.preventDefault();
             
             const user = JSON.parse(localStorage.getItem('currentUser'));
-            const users = JSON.parse(localStorage.getItem('users'));
-            const downloads = JSON.parse(localStorage.getItem('downloads'));
             
             // URL GitHub officielle
             const githubUrl = 'https://github.com/WorldSolutionRdc/WorldSolutionRdc.github.io/raw/main/Item_Rdc.apk';
@@ -1080,22 +1145,14 @@
             link.click();
             document.body.removeChild(link);
             
-            // Enregistrer le téléchargement
+            // Enregistrer le téléchargement si utilisateur connecté
             if (user) {
-                // Mettre à jour le compteur pour l'utilisateur
-                const userIndex = users.findIndex(u => u.username === user.username);
-                if (userIndex !== -1) {
-                    users[userIndex].downloads = (users[userIndex].downloads || 0) + 1;
-                    localStorage.setItem('users', JSON.stringify(users));
+                try {
+                    await incrementUserDownloads(user.username);
+                    await recordDownload(user.username);
+                } catch (error) {
+                    console.error("Erreur enregistrement téléchargement:", error);
                 }
-                
-                // Ajouter aux téléchargements globaux
-                downloads.push({
-                    username: user.username,
-                    email: user.email,
-                    date: new Date().toISOString()
-                });
-                localStorage.setItem('downloads', JSON.stringify(downloads));
             }
             
             // Vérification après 1 seconde
@@ -1107,31 +1164,27 @@
         });
 
         // Gestion des utilisateurs (Admin)
-        function loadUserManagement() {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            const connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
-            
-            // Mettre à jour le statut isOnline pour tous les utilisateurs
-            users.forEach(user => {
-                const connectedUser = connectedUsers.find(u => u.username === user.username);
-                user.isOnline = connectedUser ? connectedUser.isOnline : false;
-            });
-            
-            // Recherche dynamique
-            document.getElementById('searchUser').addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase();
-                const filtered = users.filter(u => 
-                    u.name.toLowerCase().includes(term) || 
-                    u.email.toLowerCase().includes(term) || 
-                    u.username.toLowerCase().includes(term)
-                );
-                displayUsers(filtered, connectedUsers);
-            });
-
-            displayUsers(users, connectedUsers);
+        async function loadUserManagement() {
+            try {
+                const users = await getUsers();
+                displayUsers(users);
+                
+                // Recherche dynamique
+                document.getElementById('searchUser').addEventListener('input', (e) => {
+                    const term = e.target.value.toLowerCase();
+                    const filtered = users.filter(u => 
+                        u.name.toLowerCase().includes(term) || 
+                        u.email.toLowerCase().includes(term) || 
+                        u.username.toLowerCase().includes(term)
+                    );
+                    displayUsers(filtered);
+                });
+            } catch (error) {
+                console.error("Erreur chargement utilisateurs:", error);
+            }
         }
 
-        function displayUsers(users, connectedUsers) {
+        function displayUsers(users) {
             const usersList = document.getElementById('usersList');
             usersList.innerHTML = '';
 
@@ -1144,15 +1197,10 @@
                 const userDiv = document.createElement('div');
                 userDiv.className = 'user-item';
                 
-                // Trouver l'utilisateur connecté correspondant
-                const connectedUser = connectedUsers.find(u => u.username === user.username);
-                const lastLoginTime = connectedUser ? connectedUser.loginTime : user.lastLogin;
-                const isOnline = connectedUser ? connectedUser.isOnline : false;
-                
                 userDiv.innerHTML = `
                     <div style="flex: 1;">
                         <div style="font-weight: bold;">
-                            <span class="status-indicator ${isOnline ? 'status-online' : 'status-offline'}"></span>
+                            <span class="status-indicator ${user.isOnline ? 'status-online' : 'status-offline'}"></span>
                             ${user.name}
                         </div>
                         <div style="font-size: 0.9em; color: #666;">
@@ -1161,9 +1209,9 @@
                         </div>
                         <div style="font-size: 0.8em; margin-top: 5px;">
                             <span class="badge">Inscrit le: ${new Date(user.joinDate).toLocaleDateString()}</span>
-                            <span class="badge">Dernière connexion: ${lastLoginTime ? new Date(lastLoginTime).toLocaleString() : 'Jamais'}</span>
+                            <span class="badge">Dernière connexion: ${user.lastLogin ? new Date(user.lastLogin).toLocaleString() : 'Jamais'}</span>
                             <span class="badge">Téléchargements: ${user.downloads || 0}</span>
-                            <span class="badge">Statut: ${isOnline ? '<span style="color: var(--secondary);">En ligne</span>' : '<span style="color: var(--error);">Hors ligne</span>'}</span>
+                            <span class="badge">Statut: ${user.isOnline ? '<span style="color: var(--secondary);">En ligne</span>' : '<span style="color: var(--error);">Hors ligne</span>'}</span>
                         </div>
                     </div>
                     
@@ -1178,48 +1226,29 @@
 
             // Gestion des boutons de suppression
             document.querySelectorAll('.delete-user-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
+                btn.addEventListener('click', async (e) => {
                     const username = e.currentTarget.dataset.username;
-                    const users = JSON.parse(localStorage.getItem('users'));
+                    const users = await getUsers();
                     const user = users.find(u => u.username === username);
                     
                     if (confirm(`Voulez-vous vraiment supprimer ${user.name} (${user.email}) ?\nCette action est irréversible.`)) {
-                        deleteUser(username);
+                        try {
+                            await deleteUser(username);
+                            loadUserManagement();
+                        } catch (error) {
+                            console.error("Erreur suppression:", error);
+                            alert("Erreur lors de la suppression");
+                        }
                     }
                 });
             });
         }
 
-        function deleteUser(username) {
-            let users = JSON.parse(localStorage.getItem('users'));
-            let connectedUsers = JSON.parse(localStorage.getItem('connectedUsers'));
-            let downloads = JSON.parse(localStorage.getItem('downloads'));
-            
-            // Filtrer les utilisateurs
-            users = users.filter(u => u.username !== username);
-            
-            // Retirer des utilisateurs connectés
-            connectedUsers = connectedUsers.filter(u => u.username !== username);
-            
-            // Filtrer les téléchargements
-            downloads = downloads.filter(d => d.username !== username);
-            
-            // Sauvegarder
-            localStorage.setItem('users', JSON.stringify(users));
-            localStorage.setItem('connectedUsers', JSON.stringify(connectedUsers));
-            localStorage.setItem('downloads', JSON.stringify(downloads));
-            
-            // Recharger l'affichage
-            loadUserManagement();
-        }
-
         // Mettre à jour l'état d'authentification
         function updateAuthState() {
             const user = JSON.parse(localStorage.getItem('currentUser'));
-            const connectedUsers = JSON.parse(localStorage.getItem('connectedUsers')) || [];
             
             if (user) {
-                // Afficher option admin si nécessaire
                 if (user.role === 'admin') {
                     document.getElementById('adminManagementItem').style.display = 'block';
                     
@@ -1273,14 +1302,16 @@
             authError.style.animation = 'shake 0.5s';
         }
 
-        // Initialisation
-        updateAuthState();
-
-        // Si admin est connecté, charger la gestion des utilisateurs
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.role === 'admin') {
-            loadUserManagement();
-        }
+        // Initialisation au chargement
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initializeData();
+            updateAuthState();
+            
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser && currentUser.role === 'admin') {
+                loadUserManagement();
+            }
+        });
     </script>
 </body>
 </html>
