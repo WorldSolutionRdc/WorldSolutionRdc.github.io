@@ -639,4 +639,110 @@
         
         <div class="social-links">
             <a href="https://wa.me/+243972256470"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://t.me/worldsolutiontv"><i class="fab fa-teleg
+            <a href="https://t.me/worldsolutiontv"><i class="fab fa-telegram"></i></a>
+            <a href="mailto:worldsolutiontv@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        
+        <p class="copyright">Copyright © 2018 - <script>document.write(new Date().getFullYear())</script> WorldSolution. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Afficher la date et l'heure avec secondes
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            document.getElementById('currentDateTime').textContent = now.toLocaleDateString('fr-FR', options);
+        }
+        
+        // Mettre à jour chaque seconde pour un affichage en temps réel
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // Menu mobile
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Fermer le menu lorsqu'un élément est sélectionné
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Carrousel amélioré
+        const carousel = document.getElementById('imageCarousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+        const totalImages = document.querySelectorAll('.carousel img').length;
+        
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
+            updateCarousel();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+
+        // Fonction de téléchargement
+        function downloadApp() {
+            // URL GitHub officielle
+            const githubUrl = 'https://github.com/WorldSolutionRdc/WorldSolutionRdc.github.io/raw/main/Item_Rdc.apk';
+            
+            // URL de fallback
+            const mediafireUrl = 'https://www.mediafire.com/file/jr570qudq9qyhjy/Item+Rdc.apk/file';
+            
+            // Essai de téléchargement direct
+            const link = document.createElement('a');
+            link.href = githubUrl;
+            link.download = 'Item_Rdc.apk';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Vérification après 1 seconde
+            setTimeout(() => {
+                if (!document.hasFocus()) {
+                    window.open(mediafireUrl, '_blank');
+                }
+            }, 1000);
+        }
+
+        // Gestion des boutons de téléchargement
+        document.getElementById('mainDownloadBtn').addEventListener('click', downloadApp);
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadApp();
+        });
+        document.getElementById('downloadBtnMobile').addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadApp();
+            mobileMenu.classList.remove('active');
+        });
+
+        // Gestion du clic sur l'icône email
+        document.querySelector('a[href^="mailto:"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'mailto:worldsolutiontv@gmail.com?subject=Question%20sur%20Item%20RDC&body=Bonjour,%20je%20vous%20contacte%20au%20sujet%20de...';
+        });
+    </script>
+</body>
+</html>
