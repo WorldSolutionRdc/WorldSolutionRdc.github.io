@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Rdc 🇨🇩</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --secondary-color: #0056b3;
+            --background-color: #f2f2f7;
+            --text-color: #1c1c1e;
+            --card-bg: #ffffff;
+            --menu-bg: #ffffff;
+            --menu-text: #1c1c1e;
+            --border-color: #d1d1d6;
+            --success-color: #34C759;
+            --warning-color: #FF9500;
+            --danger-color: #FF3B30;
+            --ios-gray: #8e8e93;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #0A84FF;
+            --secondary-color: #007AFF;
+            --background-color: #000000;
+            --text-color: #ffffff;
+            --card-bg: #1c1c1e;
+            --menu-bg: #2c2c2e;
+            --menu-text: #ffffff;
+            --border-color: #38383a;
+            --ios-gray: #636366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 9px;
+        }
+
+        .datetime {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--ios-gray);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .iphone-mockup {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 10px solid #000;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 500;
+            text-align: center;
+            margin: 8px 0;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 17px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-premium {
+            background-color: var(--warning-color);
+        }
+
+        .btn-premium:hover {
+            background-color: #e67e22;
+        }
+
+        .btn-video {
+            background-color: var(--danger-color);
+        }
+
+        .btn-video:hover {
+            background-color: #c0392b;
+        }
+
+        .menu-btn {
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .menu-btn i {
+            font-size: 1.2rem;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background-color: var(--menu-bg);
+            color: var(--menu-text);
+            padding: 20px;
+            transition: left 0.3s ease-out;
+            z-index: 1000;
+            overflow-y: auto;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu.active {
+            left: 0;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-item {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 17px;
+        }
+
+        .menu-item i {
+            width: 25px;
+            text-align: center;
+        }
+
+        .menu-item:hover {
+            color: var(--primary-color);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 17px;
+        }
+
+        .back-btn i {
+            font-size: 1.2rem;
+        }
+
+        .folder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .folder {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .folder:hover {
+            transform: translateY(-5px);
+        }
+
+        .folder-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .pdf-item, .video-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .pdf-item:hover, .video-item:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        .pdf-icon, .video-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            display: none;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 14px;
+            max-width: 95%;
+            max-height: 90%;
+            overflow-y: auto;
+            width: 100%;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1002;
+        }
+
+        .pdf-viewer, .video-player {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .premium-message {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.2rem;
+            color: var(--warning-color);
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        .options-container {
+            margin-top: 30px;
+        }
+
+        /* Style iOS spécifique */
+        .ios-header {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ios-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Bouton Accueil */
+        .home-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 100;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        @media (min-width: 768px) {
+            .btn {
+                width: auto;
+                min-width: 200px;
+            }
+
+            .folder-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .modal-content {
+                max-width: 80%;
+            }
+            
+            .iphone-mockup {
+                max-height: 500px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="icone.png" alt="Logo" class="logo">
+                <h1>Item Rdc</h1>
+            </div>
+            <div class="datetime">
+                <div id="current-date"></div>
+                <div id="current-time"></div>
+            </div>
+            <button class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <img src="capture.jpg" alt="Capture d'écran iPhone" class="iphone-mockup">
+
+        <button class="btn" id="start-btn">Démarrer avec iOS</button>
+
+        <button class="menu-btn" id="open-menu">
+            <i class="fas fa-bars"></i> Menu
+        </button>
+
+        <div class="menu" id="menu">
+            <div class="menu-header">
+                <h3>Menu</h3>
+                <button class="close-menu" id="close-menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="menu-item" id="about-btn">
+                <i class="fas fa-info-circle"></i> À propos
+            </div>
+            <div class="menu-item" id="contact-btn">
+                <i class="fas fa-phone-alt"></i> Nous Contacter
+            </div>
+            <div class="menu-item" id="group-btn">
+                <i class="fas fa-users"></i> Rejoindre le groupe
+            </div>
+            <div class="menu-item" id="premium-btn">
+                <i class="fas fa-crown"></i> Devenir premium
+            </div>
+        </div>
+
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Pages -->
+        <div class="page active" id="main-page">
+            <!-- Contenu principal affiché ici -->
+        </div>
+
+        <div class="page" id="options-page">
+            <div class="back-btn" id="back-from-options">
+                <i class="fas fa-arrow-left"></i> Retour
+            </div>
+            <h2 class="ios-header">Options disponibles</h2>
+            <div class="options-container">
+                <button class="btn" id="free-btn">Gratuit</button>
+                <button class="btn btn-premium" id="premium-option-btn">Premium</button>
+                <button class="btn btn-video" id="video-btn">Vidéos</button>
+            </div>
+        </div>
+
+        <div class="page" id="free-page">
+            <div class="back-btn" id="back-from-free">
+                <i class="fas fa-arrow-left"></i> Retour
+            </div>
+            <h2 class="ios-header">Banques et Institutions</h2>
+            <div class="folder-grid" id="folder-container">
+                <!-- Dossiers seront ajoutés dynamiquement ici -->
+            </div>
+        </div>
+
+        <div class="page" id="pdf-list-page">
+            <div class="back-btn" id="back-from-pdf-list">
+                <i class="fas fa-arrow-left"></i> Retour
+            </div>
+            <h2 class="ios-header" id="pdf-list-title"></h2>
+            <div id="pdf-list-container">
+                <!-- PDFs seront ajoutés dynamiquement ici -->
+            </div>
+        </div>
+
+        <div class="page" id="premium-page">
+            <div class="back-btn" id="back-from-premium">
+                <i class="fas fa-arrow-left"></i> Retour
+            </div>
+            <h2 class="ios-header">Accès Premium</h2>
+            <div class="premium-message">
+                Bientôt disponible ⚠️
+            </div>
+        </div>
+
+        <div class="page" id="video-page">
+            <div class="back-btn" id="back-from-video">
+                <i class="fas fa-arrow-left"></i> Retour
+            </div>
+            <h2 class="ios-header">Vidéos de préparation</h2>
+            <div id="video-list-container">
+                <!-- Vidéos seront ajoutés dynamiquement ici -->
+            </div>
+        </div>
+
+        <!-- Modals -->
+        <div class="modal" id="pdf-modal">
+            <span class="close-modal" id="close-pdf-modal">&times;</span>
+            <div class="modal-content">
+                <iframe class="pdf-viewer" id="pdf-viewer" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <div class="modal" id="video-modal">
+            <span class="close-modal" id="close-video-modal">&times;</span>
+            <div class="modal-content">
+                <iframe class="video-player" id="video-player" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="modal" id="about-modal">
+            <span class="close-modal" id="close-about-modal">&times;</span>
+            <div class="modal-content">
+                <div id="about-content"></div>
+            </div>
+        </div>
+
+        <div class="modal" id="password-modal">
+            <span class="close-modal" id="close-password-modal">&times;</span>
+            <div class="modal-content">
+                <h3>Accès Premium</h3>
+                <p>Veuillez entrer le mot de passe premium :</p>
+                <input type="password" class="password-input" id="premium-password" placeholder="Mot de passe">
+                <button class="btn" id="submit-password">Valider</button>
+                <p id="password-error" style="color: var(--danger-color); margin-top: 10px; display: none;">Mot de passe incorrect</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bouton Accueil -->
+    <button class="home-btn" id="homeBtn" title="Retour à l'accueil">
+        <i class="fas fa-home"></i>
+    </button>
+
+    <script>
+        // Données des PDFs
+        const pdfData = {
+            "BCDC": [
+                { id: "1g94CoVkQSwYFZLmIiW3nq0fS6FVkjq5G", title: "Document 1" },
+                { id: "1giMWK1n3aG3SMtqKS0s6OricsYkmO6mL", title: "Document 2" },
+                { id: "1gJvvMy55RVyH6WN8HPhLWP6WUXTMFlRl", title: "Document 3" },
+                { id: "1gD-LBz5oFtVfni8SHO-Vfw8xtWT4We-A", title: "Document 4" },
+                { id: "1gKsBUeBJxvRPiKooJuYf9_Cs0jMp5V-U", title: "Document 5" },
+                { id: "1gIcSue1uQq1JUNHUfk5P5jgA22RpJxRp", title: "Document 6" },
+                { id: "1gJxkiKMysNz8-40pT5Qm8J-3YxDUkylm", title: "Document 7" }
+            ],
+            "RawBank": [
+                { id: "1F6TEicWJz7C2IfSgvSEeSJ2q1vIcMvn5", title: "Document RawBank" }
+            ],
+            "TMB": [
+                { id: "1fCnTq8If2_3d-Dja_k1nt8SUlgeFOfN6", title: "Document TMB" }
+            ],
+            "FBNBank": [
+                { id: "1aJnOBFTePEb558XSI5t1Zg23dUzsaKdA", title: "Document FBNBank" }
+            ],
+            "Finca": [
+                { id: "1FUkZAOXUZLuhNTD2LmuXYES5kkRZV5YK", title: "Document Finca" }
+            ],
+            "Ceni": [
+                { id: "1ddYrVJxQQx97qG2iEG7sy6v2Jymfr5Lr", title: "Document Ceni 1" },
+                { id: "1rIPBq0QquMK5rm8ULBDayro9oYwAZyu3", title: "Document Ceni 2" }
+            ],
+            "ENA": [
+                { id: "1EIsaEANhH25vPzkvsIIsWlMwS4dVE8KZ", title: "Document ENA" }
+            ],
+            "Activa": [],
+            "Access": [
+                { id: "1Fks0vwb0P7ErnIuvuM7JActOEg2KKQ_u", title: "Document Access" }
+            ],
+            "Entretien": [
+                { id: "1Fwq4T2_X708El_2Pye9v4iah22BfIjMx", title: "Document Entretien 1" },
+                { id: "1o4_lhf0i99MRhczb8n6is_GdM639elAb", title: "Document Entretien 2" }
+            ],
+            "Afriland": [],
+            "BCC": [
+                { id: "1FLMsooqNP29f4mGffdBlf4Zr6U_xp3Ql", title: "Document BCC" }
+            ],
+            "BGFIBank": [
+                { id: "1ddYrVJxQQx97qG2iEG7sy6v2Jymfr5Lr", title: "Document BGFIBank 1" },
+                { id: "1d_w2SQqmN2f6GVhKYcu4ObUMMgit1014", title: "Document BGFIBank 2" }
+            ],
+            "Ecobank": [
+                { id: "1FP9bnBqC3WiroeNnvLqvCtX7sKqnWebZ", title: "Document Ecobank" }
+            ],
+            "UBA": [
+                { id: "1GyLz9jEyOfchlDVH0rQGciIkTYoNkHV-", title: "Document UBA 1" },
+                { id: "1gKsBUeBJxvRPiKooJuYf9_Cs0jMp5V-U", title: "Document UBA 2" }
+            ],
+            "Rawsur": [],
+            "Advans": [
+                { id: "1rAirCsXcnzIbXbTXmwsV3J3niSRZzh3F", title: "Document Advans" }
+            ],
+            "Autres": [
+                { id: "1rWvsVQAUiPJUuJyP-ZOFG6axtuefxPoe", title: "Autres documents" }
+            ]
+        };
+
+        // Données des vidéos
+        const videoItems = [
+            { id: "1okMAMo2D6r_GYwG6sajSx-78ZcWfllpa", title: "Introduction au Test", order: 1 },
+            { id: "1olwH4Cuqr_FJGqyftJ-EaQ6N9LKCXKMy", title: "Réussir les tests psychotechniques", order: 2 },
+            { id: "1ozfzlnrR5VXJHfKOl8H6UoEa16CHmAwn", title: "Préparation aux entretiens", order: 3 },
+            { id: "1q5pYt95QKkWUWAi7Z6_Yk-ab1MCj2VLq", title: "Se présenter en entretien d'embauche", order: 4 },
+            { id: "1qAGhCeiMS3VI4egtyfT_CtV-UIsmv1No", title: "Entretien : présentez-vous", order: 5 },
+            { id: "1qCAAzrHwW1q5JTHjzsFulYXvXjBCg8W-", title: "Parlez-moi de vous (2 minutes)", order: 6 },
+            { id: "1qMQGfAC9OQ-UAKR7xtu5-juUHZb9iV74", title: "Bien se présenter en entretien", order: 7 },
+            { id: "1sWRuL1VfiMOg2t5r9QFcSq67BCfZGR62", title: "Tests logiques corrigés", order: 8 },
+            { id: "1sTe9teINUavpaacQvQYTpB0A96Uwk4Ed", title: "Test alphabétique", order: 9 },
+            { id: "11Z3DY0OXHJo-MdYP47Nv-3oSAWncbOMU", title: "Décrocher le job de tes rêves", order: 10 },
+            { id: "11g-D5mH1rYQXKZDwDmNY7GS6_dzyeYag", title: "Astuces dans le kit du candidat", order: 11 },
+            { id: "10zSQpdeVtZWz8PSZhOY05OZdcpjEpiny", title: "5 questions les plus difficiles", order: 12 },
+            { id: "10rW4qNfrOWOHzR8lOFy1gj1wUhUoUURf", title: "Réussir son entretien d'embauche", order: 13 },
+            { id: "10sa4dxNneq-YmqAGpUudyUrHkN2iMcYV", title: "Persuader un recruteur", order: 14 },
+            { id: "111mkjO_jAweOkJeKz_e0ytiZZw9EJ3yB", title: "Présentez-vous: exemples de réponses", order: 15 },
+            { id: "1B-dZkOxCZ7tpB6cAnVlUBycH3PaBqjkM", title: "Comment donner tes prétentions salariales", order: 16 },
+            { id: "1Ax5h-43gtx58RMjebuGt94WIglGDQWg0", title: "Quelles sont vos prétentions salariales", order: 17 },
+            { id: "1AqlH6VQpZbdPXlOqfL9OyAtgp97YDCBA", title: "Quelle est votre prétention salariale", order: 18 },
+            { id: "1An8b211dP1kinXULlLJO3tPWTqaAFE7L", title: "Question prétentions salariales", order: 19 },
+            { id: "1AhyqxLHuZ5_QAMceGaFcg3kA5NGUxeX-", title: "Comment négocier son salaire en entretien", order: 20 },
+            { id: "1A6cSpxeftjIAXq7MLs-lCsOYiJcuK_Jp", title: "Les 3 questions à poser à la fin d'un entretien", order: 21 },
+            { id: "1A7ngKD3pTRzXiNlApHIz2Pa0qQsnl5I2", title: "10 QUESTIONS RÉPONSES en Entretien d'embauche", order: 22 },
+            { id: "1A-a2kFXtGm3wzhOdj2IxNidBuu87_SqN", title: "7 questions pièges en entretien d'embauche", order: 23 },
+            { id: "1A9YXOU87JsHv4jKwVsSc02F5bW7cYSzr", title: "LA question piège à préparer en entretien d'embauche", order: 24 },
+            { id: "1AKHui3qwIQgVU7y2_QIL7Q3TauIsYUtn", title: "COMMENT RÉPONDRE À LA QUESTION « POURQUOI VOUS ET PAS UN AUTRE »", order: 25 },
+            { id: "1AR8gSbncVt4spGz-fR0kazGdKn_WxVRN", title: "Pourquoi vous et pas un autre - Exemples de réponses", order: 26 },
+            { id: "1A8qVkJ7Sfy_pxBJ-UnD3CTpLe3WwYVeo", title: "Entretien d'embauche questions et réponses", order: 27 },
+            { id: "1A1XTlOOzzl9QbfIUvS6p88QD7OaDvWnv", title: "Questions réponses en entretien d'embauche", order: 28 },
+            { id: "1A68oQoaPDToPFziWi_njYiMemcRcTl0X", title: "Entretien d'embauche - 15 questions pièges decryptées pour vous", order: 29 },
+            { id: "1AcMz8l7594I3Rj_VTOPIKltnhTjWSsmt", title: "Et toi quelles sont tes prétentions salariales", order: 30 },
+            { id: "1Ja-02IAtODWVEJw2S5UijQ8IPBR2h0ZX", title: "Les jeux des matrices", order: 31 },
+            { id: "1JZNCDriCzGAReq01bzMApQZ_ZN0rm2Tw", title: "Test psychotechnique triangle avec des chiffres réponse 1", order: 32 },
+            { id: "1J1DZIWzervP7l0EmQd0g8nPZqlWuD4g3", title: "Test psychotechnique - Test logique - exercices corrigés N°02", order: 33 },
+            { id: "1JYKc42AHeQksRnoga6P4Mv5yI6hnXWTL", title: "Test Psychotechnique: Domino", order: 34 },
+            { id: "1JOTDywxTwRmWrCW79IVNydjxJP5w7ioq", title: "QCM question psychotechnique", order: 35 },
+            { id: "1JULoBjxf7d6wQTefoGaW26h7E6UUePwa", title: "Test psychotechnique - Test de logique - exercices corrigés", order: 36 },
+            { id: "1JLjIuS1PC6ATkFT24zECcBPA3KaGJNMB", title: "Test Psychotechnique - Série de Domino (Simple et croisée)", order: 37 },
+            { id: "1JKFHNYB4Q3RENq8q-xTrQtnu_4TOtlnX", title: "Les Tests Psychotechniques de l'Armée", order: 38 },
+            { id: "1JCU6wrcdFpYDVEnHWSO1d2eEn0Nm9gyD", title: "Epreuve Test Logique - Concours", order: 39 },
+            { id: "1J9afswMyoBJg1-CY4XJ6bfszKKitlQby", title: "Test psychotechnique grille corrigé", order: 40 },
+            { id: "1J5BAKkUhKZhfNIytd_fQso430gdzTtuk", title: "Test Psychotechnique: TEST Des CARTES NIVEAU FACILE", order: 41 },
+            { id: "1IzTJXLI0cIK8A4nbIn17GOdzdRZpUrQz", title: "Test psychotechnique - Test logique - Intrus Graphique", order: 42 }
+        ];
+
+        // Texte À propos
+        const aboutText = "<div class='ios-card'><b>📘 <i>Item Rdc 🇨🇩 – Votre allié pour réussir vos tests et entretiens!</i> 🚀</b><br/><br/>" +
+            "💡 <i>Développez vos connaissances et maximisez vos chances de succès</i> grâce à une application innovante et accessible. <br/><br/>" +
+            "<b>🔍 Qu'est-ce que Item Rdc?</b><br/>" +
+            "Item Rdc est une application conçue pour faciliter l'accès aux <i>tests psychotechniques</i> dans plusieurs domaines, notamment:<br/>" +
+            "✅ <i>Banque et Assurance</i> 🏦<br/>" +
+            "✅ <i>Administration publique</i> 🏛️<br/>" +
+            "✅ <i>Concours de recrutement</i> 👥<br/>" +
+            "✅ <i>Entretiens d'embauche</i> 🎯<br/><br/>" +
+            "📚 Grâce à <i>une large base de questions adaptées et actualisées</i>, ItemPdf vous permet de:<br/>" +
+            "✔️ <i>Affiner vos compétences</i> pour mieux répondre aux épreuves<br/>" +
+            "✔️ <i>Gérer efficacement votre préparation</i> en structurant vos révisions<br/>" +
+            "✔️ <i>Simuler des tests réels</i> et gagner en confiance<br/><br/>" +
+            "🔥 <i>Ne laissez rien au hasard!</i> Préparez-vous avec méthode et augmentez vos chances de réussite.<br/><br/>" +
+            "<b>Développé par:</b> Worldsolution<br/>" +
+            "<b>Contact Dev:</b> +243 972 256 470 (WhatsApp)<br/>" +
+            "<b>Version actuelle: </b>1.0.0<br/>" +
+            "<i>Téléchargez dès maintenant et commencez votre entraînement!</i> 🚀</div>";
+
+        // Éléments DOM
+        const currentDateElement = document.getElementById('current-date');
+        const currentTimeElement = document.getElementById('current-time');
+        const themeToggle = document.getElementById('theme-toggle');
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const menu = document.getElementById('menu');
+        const overlay = document.getElementById('overlay');
+        const pages = document.querySelectorAll('.page');
+        const startBtn = document.getElementById('start-btn');
+        const freeBtn = document.getElementById('free-btn');
+        const premiumOptionBtn = document.getElementById('premium-option-btn');
+        const videoBtn = document.getElementById('video-btn');
+        const backFromOptionsBtn = document.getElementById('back-from-options');
+        const backFromFreeBtn = document.getElementById('back-from-free');
+        const backFromPdfListBtn = document.getElementById('back-from-pdf-list');
+        const backFromPremiumBtn = document.getElementById('back-from-premium');
+        const backFromVideoBtn = document.getElementById('back-from-video');
+        const folderContainer = document.getElementById('folder-container');
+        const pdfListContainer = document.getElementById('pdf-list-container');
+        const pdfListTitle = document.getElementById('pdf-list-title');
+        const videoListContainer = document.getElementById('video-list-container');
+        const pdfModal = document.getElementById('pdf-modal');
+        const closePdfModal = document.getElementById('close-pdf-modal');
+        const pdfViewer = document.getElementById('pdf-viewer');
+        const videoModal = document.getElementById('video-modal');
+        const closeVideoModal = document.getElementById('close-video-modal');
+        const videoPlayer = document.getElementById('video-player');
+        const aboutBtn = document.getElementById('about-btn');
+        const aboutModal = document.getElementById('about-modal');
+        const closeAboutModal = document.getElementById('close-about-modal');
+        const aboutContent = document.getElementById('about-content');
+        const contactBtn = document.getElementById('contact-btn');
+        const groupBtn = document.getElementById('group-btn');
+        const premiumBtn = document.getElementById('premium-btn');
+        const passwordModal = document.getElementById('password-modal');
+        const closePasswordModal = document.getElementById('close-password-modal');
+        const premiumPasswordInput = document.getElementById('premium-password');
+        const submitPasswordBtn = document.getElementById('submit-password');
+        const passwordError = document.getElementById('password-error');
+        const homeBtn = document.getElementById('homeBtn');
+
+        // Variables d'état
+        let currentFolder = '';
+        const PREMIUM_PASSWORD = "worldsolution"; // Mot de passe premium
+
+        // Initialisation
+        function init() {
+            showPage('main-page');
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+            loadFolders();
+            loadVideos();
+            aboutContent.innerHTML = aboutText;
+            
+            // Vérifier le thème stocké
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
+        // Mettre à jour la date et l'heure
+        function updateDateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            currentDateElement.textContent = now.toLocaleDateString('fr-FR', options);
+            currentTimeElement.textContent = now.toLocaleTimeString('fr-FR');
+        }
+
+        // Basculer entre les thèmes clair/sombre
+        themeToggle.addEventListener('click', () => {
+            const html = document.documentElement;
+            if (html.getAttribute('data-theme')) {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+
+        // Gérer le menu
+        openMenuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+
+        function openMenu() {
+            menu.classList.add('active');
+            overlay.classList.add('active');
+        }
+
+        function closeMenu() {
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        overlay.addEventListener('click', () => {
+            closeMenu();
+            pdfModal.style.display = 'none';
+            videoModal.style.display = 'none';
+            aboutModal.style.display = 'none';
+            passwordModal.style.display = 'none';
+        });
+
+        // Afficher une page spécifique
+        function showPage(pageId) {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Navigation
+        startBtn.addEventListener('click', () => {
+            showPage('options-page');
+        });
+
+        freeBtn.addEventListener('click', () => {
+            showPage('free-page');
+        });
+
+        premiumOptionBtn.addEventListener('click', () => {
+            showPage('premium-page');
+        });
+
+        videoBtn.addEventListener('click', () => {
+            showPage('video-page');
+        });
+
+        backFromOptionsBtn.addEventListener('click', () => {
+            showPage('main-page');
+        });
+
+        backFromFreeBtn.addEventListener('click', () => {
+            showPage('options-page');
+        });
+
+        backFromPdfListBtn.addEventListener('click', () => {
+            showPage('free-page');
+        });
+
+        backFromPremiumBtn.addEventListener('click', () => {
+            showPage('options-page');
+        });
+
+        backFromVideoBtn.addEventListener('click', () => {
+            showPage('options-page');
+        });
+
+        // Charger les dossiers
+        function loadFolders() {
+            folderContainer.innerHTML = '';
+            Object.keys(pdfData).forEach(folderName => {
+                if (pdfData[folderName].length > 0) {
+                    const folder = document.createElement('div');
+                    folder.className = 'folder';
+                    folder.innerHTML = `
+                        <img src="ic_${folderName.toLowerCase()}_24" alt="${folderName}" class="folder-icon" onerror="this.src='folder.png'">
+                        <div>${folderName}</div>
+                    `;
+                    folder.addEventListener('click', () => {
+                        currentFolder = folderName;
+                        showPdfList(folderName);
+                    });
+                    folderContainer.appendChild(folder);
+                }
+            });
+        }
+
+        // Afficher la liste des PDFs d'un dossier
+        function showPdfList(folderName) {
+            pdfListTitle.textContent = folderName;
+            pdfListContainer.innerHTML = '';
+            
+            pdfData[folderName].forEach(pdf => {
+                const pdfItem = document.createElement('div');
+                pdfItem.className = 'pdf-item';
+                pdfItem.innerHTML = `
+                    <img src="ic_pdf.png" alt="PDF" class="pdf-icon">
+                    <div>${pdf.title}</div>
+                `;
+                pdfItem.addEventListener('click', () => {
+                    openPdf(pdf.id);
+                });
+                pdfListContainer.appendChild(pdfItem);
+            });
+            
+            showPage('pdf-list-page');
+        }
+
+        // Ouvrir un PDF
+        function openPdf(pdfId) {
+            const pdfUrl = `https://drive.google.com/file/d/${pdfId}/preview`;
+            pdfViewer.src = pdfUrl;
+            pdfModal.style.display = 'flex';
+            overlay.classList.add('active');
+        }
+
+        closePdfModal.addEventListener('click', () => {
+            pdfModal.style.display = 'none';
+            overlay.classList.remove('active');
+            pdfViewer.src = '';
+        });
+
+        // Charger les vidéos
+        function loadVideos() {
+            videoListContainer.innerHTML = '';
+            
+            // Trier les vidéos par ordre
+            const sortedVideos = [...videoItems].sort((a, b) => a.order - b.order);
+            
+            sortedVideos.forEach(video => {
+                const videoItem = document.createElement('div');
+                videoItem.className = 'video-item';
+                videoItem.innerHTML = `
+                    <img src="ic_video.png" alt="Vidéo" class="video-icon">
+                    <div>${video.title}</div>
+                `;
+                videoItem.addEventListener('click', () => {
+                    openVideo(video.id);
+                });
+                videoListContainer.appendChild(videoItem);
+            });
+        }
+
+        // Ouvrir une vidéo
+        function openVideo(videoId) {
+            const videoUrl = `https://drive.google.com/file/d/${videoId}/preview`;
+            videoPlayer.src = videoUrl;
+            videoModal.style.display = 'flex';
+            overlay.classList.add('active');
+        }
+
+        closeVideoModal.addEventListener('click', () => {
+            videoModal.style.display = 'none';
+            overlay.classList.remove('active');
+            videoPlayer.src = '';
+        });
+
+        // À propos
+        aboutBtn.addEventListener('click', () => {
+            aboutModal.style.display = 'flex';
+            overlay.classList.add('active');
+            closeMenu();
+        });
+
+        closeAboutModal.addEventListener('click', () => {
+            aboutModal.style.display = 'none';
+            overlay.classList.remove('active');
+        });
+
+        // Nous contacter
+        contactBtn.addEventListener('click', () => {
+            window.open('https://wa.me/+243972256470', '_blank');
+            closeMenu();
+        });
+
+        // Rejoindre le groupe
+        groupBtn.addEventListener('click', () => {
+            window.open('https://t.me/worldsolutiontv', '_blank');
+            closeMenu();
+        });
+
+        // Devenir premium
+        premiumBtn.addEventListener('click', () => {
+            passwordModal.style.display = 'flex';
+            overlay.classList.add('active');
+            closeMenu();
+            premiumPasswordInput.value = '';
+            passwordError.style.display = 'none';
+        });
+
+        closePasswordModal.addEventListener('click', () => {
+            passwordModal.style.display = 'none';
+            overlay.classList.remove('active');
+        });
+
+        submitPasswordBtn.addEventListener('click', () => {
+            if (premiumPasswordInput.value === PREMIUM_PASSWORD) {
+                passwordModal.style.display = 'none';
+                overlay.classList.remove('active');
+                showPage('premium-page');
+            } else {
+                passwordError.style.display = 'block';
+            }
+        });
+
+        // Bouton retour à l'accueil
+        homeBtn.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+
+        // Initialiser l'application
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
