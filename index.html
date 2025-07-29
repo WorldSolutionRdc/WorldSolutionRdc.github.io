@@ -2,249 +2,157 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>World Solution RDC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance en cours</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --text-light: #f8f9fa;
+            --text-dark: #212529;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-dark);
+        }
+        
+        .maintenance-container {
+            max-width: 800px;
+            width: 90%;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .maintenance-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .maintenance-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .maintenance-content {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        h1 {
+            margin: 0 0 1rem;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #495057;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: #e9ecef;
+            border-radius: 50px;
+            margin: 2rem 0;
+            height: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), #7209b7);
+            width: 65%;
+            animation: progressAnimation 2s ease-in-out infinite;
+        }
+        
+        .contact-info {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-top: 1px solid #e9ecef;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes progressAnimation {
+            0% { width: 65%; }
+            50% { width: 70%; }
+            100% { width: 65%; }
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="loading-screen">
-        <div class="loading-spinner"></div>
-    </div>
-
-    <!-- Page de Login -->
-    <div id="login-page" class="page">
-        <div class="login-container">
-            <div class="logo">
-                <h1>World Solution RDC</h1>
+    <div class="maintenance-container">
+        <div class="maintenance-header">
+            <div class="maintenance-icon">
+                <i class="fas fa-tools"></i>
             </div>
-            <form id="login-form">
-                <div class="input-group">
-                    <i class="fas fa-user"></i>
-                    <input type="email" id="login-email" placeholder="Email" required>
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" id="login-password" placeholder="Mot de passe" required>
-                </div>
-                <button type="submit" class="btn">Se connecter</button>
-                <div class="links">
-                    <a href="#" id="forgot-password">Mot de passe oublié?</a>
-                    <a href="#" id="show-register">S'inscrire</a>
-                </div>
-            </form>
+            <h1>Maintenance en cours</h1>
+        </div>
+        
+        <div class="maintenance-content">
+            <p>Nous améliorons votre expérience. Notre site est actuellement en maintenance et sera de retour très bientôt.</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            
+            <p>Nous travaillons activement pour terminer les mises à jour au plus vite. Merci pour votre patience.</p>
+            
+            <a href="mailto:worldsolutiontv@gmail.com" class="btn">Nous contacter</a>
+        </div>
+        
+        <div class="contact-info">
+            <p><i class="fas fa-clock"></i> Temps estimé: 2 heures</p>
+            <p><i class="fas fa-envelope"></i> worldsolutiontv@gmail.com</p>
         </div>
     </div>
-
-    <!-- Page d'Inscription -->
-    <div id="register-page" class="page">
-        <div class="login-container">
-            <div class="logo">
-                <h1>Créer un compte</h1>
-            </div>
-            <form id="register-form">
-                <div class="input-group">
-                    <i class="fas fa-user"></i>
-                    <input type="text" id="register-name" placeholder="Nom complet" required>
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" id="register-email" placeholder="Email" required>
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" id="register-password" placeholder="Mot de passe" required>
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" id="register-confirm" placeholder="Confirmer mot de passe" required>
-                </div>
-                <button type="submit" class="btn">S'inscrire</button>
-                <div class="links">
-                    <a href="#" id="show-login">Déjà un compte? Se connecter</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Page de récupération de mot de passe -->
-    <div id="forgot-page" class="page">
-        <div class="login-container">
-            <div class="logo">
-                <h1>Récupérer mot de passe</h1>
-            </div>
-            <form id="forgot-form">
-                <div class="input-group">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" id="forgot-email" placeholder="Email" required>
-                </div>
-                <button type="submit" class="btn">Envoyer le lien</button>
-                <div class="links">
-                    <a href="#" id="show-login-from-forgot">Retour à la connexion</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Page principale après connexion -->
-    <div id="main-page" class="page">
-        <!-- Menu -->
-        <header>
-            <div class="menu-container">
-                <div class="user-info">
-                    <span id="welcome-message">Bienvenue, <span id="username-display"></span></span>
-                </div>
-                <div class="menu-btn" id="menu-btn">
-                    <div class="menu-bar"></div>
-                    <div class="menu-bar"></div>
-                    <div class="menu-bar"></div>
-                </div>
-                <nav class="menu-nav" id="menu-nav">
-                    <ul>
-                        <li><a href="#" id="about-btn"><i class="fas fa-info-circle"></i> À propos</a></li>
-                        <li><a href="#" id="contact-btn"><i class="fas fa-envelope"></i> Nous contacter</a></li>
-                        <li><a href="#" id="join-btn"><i class="fas fa-user-plus"></i> Nous rejoindre</a></li>
-                        <li><a href="#" id="iphone-btn"><i class="fas fa-mobile-alt"></i> iPhone 💥</a></li>
-                        <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <!-- Contenu principal -->
-        <main id="main-content">
-            <div class="app-presentation">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="slideshow">
-                            <img src="images/img1.jpg" class="slide active" alt="Slide 1" loading="lazy">
-                            <img src="images/img2.jpg" class="slide" alt="Slide 2" loading="lazy">
-                            <img src="images/img3.jpg" class="slide" alt="Slide 3" loading="lazy">
-                            <img src="images/img4.jpg" class="slide" alt="Slide 4" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-                <button class="download-btn" id="download-btn">
-                    <i class="fas fa-download"></i> Télécharger l'application APK
-                </button>
-            </div>
-
-            <div class="download-options-container">
-                <div class="download-options">
-                    <div class="download-item">
-                        <img src="images/ico1.png" alt="Item RDC" class="download-icon" loading="lazy">
-                        <button class="download-apk" id="download-item-rdc">
-                            <i class="fas fa-download"></i> Item RDC
-                        </button>
-                    </div>
-                    <div class="download-item">
-                        <img src="images/ico2.jpg" alt="Generate Pass" class="download-icon" loading="lazy">
-                        <button class="download-apk" id="download-generate-pass">
-                            <i class="fas fa-download"></i> Generate Pass
-                        </button>
-                    </div>
-                    <div class="download-item">
-                        <img src="images/ico3.png" alt="PDF Viewer" class="download-icon" loading="lazy">
-                        <button class="download-apk" id="download-pdf-viewer">
-                            <i class="fas fa-download"></i> PDF Viewer
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <!-- Pied de page -->
-        <footer>
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="images/ico.jpg" alt="World Solution RDC" loading="lazy">
-                    <h3>World Solution RDC</h3>
-                </div>
-                <div class="footer-info">
-                    <p>Email: worldsolutiontv@gmail.com</p>
-                    <p>Téléphone: +243 972256470</p>
-                    <p>Adresse: Kinshasa, République Démocratique du Congo</p>
-                </div>
-                <div class="footer-copyright">
-                    <p>&copy; 2023 World Solution RDC. Tous droits réservés.</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Modals -->
-    <div id="about-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>À propos de World Solution RDC</h2>
-            <div class="about-section">
-                <h3><i class="fas fa-mobile-alt"></i> Item RDC 🇨🇩</h3>
-                <p class="subtitle">Votre allié pour réussir vos tests et entretiens !</p>
-                <p>Développez vos connaissances et maximisez vos chances de succès grâce à une application innovante et accessible.</p>
-                
-                <h4>Qu'est-ce que Item RDC ?</h4>
-                <p>Item RDC est une application conçue pour faciliter l'accès aux tests psychotechniques dans plusieurs domaines :</p>
-                
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <i class="fas fa-university"></i>
-                        <span>Banque et Assurance</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-landmark"></i>
-                        <span>Administration publique</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-users"></i>
-                        <span>Concours de recrutement</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-bullseye"></i>
-                        <span>Entretiens d'embauche</span>
-                    </div>
-                </div>
-                
-                <h4 class="features-title">✨ Fonctionnalités clés :</h4>
-                <ul class="features-list">
-                    <li>Base de données complète de tests</li>
-                    <li>Mises à jour régulières</li>
-                    <li>Interface intuitive</li>
-                    <li>Résultats et corrections détaillés</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="contact-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Nous contacter</h2>
-            <form id="contact-form">
-                <div class="input-group">
-                    <input type="text" placeholder="Votre nom" required>
-                </div>
-                <div class="input-group">
-                    <input type="email" placeholder="Votre email" required>
-                </div>
-                <div class="input-group">
-                    <textarea placeholder="Votre message" required></textarea>
-                </div>
-                <button type="submit" class="btn">Envoyer</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="join-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Nous rejoindre</h2>
-            <p>Vous souhaitez faire partie de notre équipe? Envoyez-nous votre CV et une lettre de motivation à worldsolutiontv@gmail.com</p>
-            <p>Nous recherchons des talents passionnés par l'innovation et le développement technologique.</p>
-        </div>
-    </div>
-
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="js/script.js"></script>
 </body>
 </html>
